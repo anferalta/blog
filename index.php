@@ -12,11 +12,8 @@
         require_once 'sistema/configuracao.php';
         include_once 'helpers.php';
 
-        $url = 'http://unset.';
+        echo SITE_NOME;
         
-        var_dump(validarUrl($url));
-        echo '<hr>';
-        var_dump(validarUrlComFiltro($url));
         ?>	
     </body>
 </html>
