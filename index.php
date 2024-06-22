@@ -12,7 +12,7 @@
         require_once 'sistema/configuracao.php';
         include_once 'helpers.php';
 
-        $url = 'hp://unset.';
+        $url = 'http://unset.';
         
         var_dump(validarUrl($url));
         echo '<hr>';
