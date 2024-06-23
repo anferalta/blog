@@ -11,8 +11,25 @@
 
         require_once 'sistema/configuracao.php';
         include_once 'helpers.php';
+        
+        echo saudacao().' hoje é '.dataAtual();
 
-        echo SITE_NOME;
+        //$meses = array();
+       // $meses = [
+         // 'j' => 'Janeiro', 
+           // 'Fevereiro', 
+           // 'Março'];
+        //foreach ($meses as $chave){
+          //  echo $chave.'<br>';
+        //}
+        //echo $meses[0];
+        //echo '<hr>';
+        //var_dump($meses);
+        
+        //echo '<hr>';
+       // echo $_SERVER['SCRIPT_FILENAME'];
+        //echo '<hr>';
+        //var_dump($_SERVER);
         
         ?>	
     </body>
