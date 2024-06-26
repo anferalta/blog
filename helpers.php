@@ -1,33 +1,31 @@
 <?php
 
-function slug(string $string) : string
+function slug(string $string): string
 {
-    $mapa['a'] = 
-            'ÁÀÂÃÇÉÈÊÍÌÎÑÓÒÕÔÚÙÛÝáàãâçéèêíìîñóòôõúùû@$%#&*() -+= {[]}/?´´|;:.,\\<> ';
-                
-    $mapa['b'] = 
-            'aaaaceeeiiinoooouuuyaaaaceeeiiinoooouuu';
-           
+    $mapa['a'] = 'ÁÀÂÃÇÉÈÊÍÌÎÑÓÒÕÔÚÙÛÝáàãâçéèêíìîñóòôõúùû@$%#&*() -+= {[]}/?´´|;:.,\\<> ';
+
+    $mapa['b'] = 'aaaaceeeiiinoooouuuyaaaaceeeiiinoooouuu';
+
     $slug = strtr(utf8_decode($string), utf8_decode($mapa['a']), $mapa['b']);
-    
+
     $slug = strip_tags(trim($slug));
-    $slug = str_replace(' ', '-' , $slug);
-    $slug = str_replace(['-----', '----', '---', '--', '-'],'-', $slug);
-    
+    $slug = str_replace(' ', '-', $slug);
+    $slug = str_replace(['-----', '----', '---', '--', '-'], '-', $slug);
+
     return strtolower(utf8_decode($slug));
 }
 
-function dataAtual() : string
+function dataAtual(): string
 {
     $diaMes = date('d');
     $diaSemana = date('w');
     $mes = date('n') - 1;
     $ano = date('Y');
-    
+
     $nomesDiasDaSemana = [
         'Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'
     ];
-    
+
     $nomesDosMeses = [
         'Janeiro',
         'Fevereiro',
@@ -42,9 +40,9 @@ function dataAtual() : string
         'Novembro',
         'Dezembro'
     ];
-    
-    $dataFormatada = $nomesDiasDaSemana[$diaSemana].', '.$diaMes.' de '.$nomesDosMeses[$mes].' de '.$ano;
-    
+
+    $dataFormatada = $nomesDiasDaSemana[$diaSemana] . ', ' . $diaMes . ' de ' . $nomesDosMeses[$mes] . ' de ' . $ano;
+
     return $dataFormatada;
 }
 
@@ -57,7 +55,7 @@ function url(string $url): string
         return $ambiente . $url;
     }
 
-    return $ambiente . '/'.$url;
+    return $ambiente . '/' . $url;
 }
 
 function localhost(): bool
@@ -106,8 +104,8 @@ function formatarNumero(string $numero = null): string
 
 function saudacao(): string
 {
-    $hora = date('H');
 
+    $hora = date('H');
     if ($hora >= 0 && $hora <= 5) {
         $saudacao = 'boa madrugada';
     } elseif ($hora >= 6 and $hora <= 12) {
@@ -117,6 +115,14 @@ function saudacao(): string
     } else {
         $saudacao = 'boa noite';
     }
+
+    //$saudacao = match (true){
+    //$hora => 0 and $hora <= 5 => 'boa madrugada',
+    //$hora => 6 and $hora <= 12 => 'bom dia',
+    //$hora => 13 and $hora <= 18 => 'boa tarde',
+    //default => 'boa noite' 
+    //};    
+
     return $saudacao;
 }
 
