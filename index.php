@@ -11,8 +11,12 @@
 
         require_once 'sistema/configuracao.php';
         include_once 'helpers.php';
-        
-        echo saudacao();
+           
+        $numero = 5;
+        while ($numero <= 10){
+            echo $numero++;
+        }
+            
         
         ?>	
     </body>
