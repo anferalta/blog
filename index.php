@@ -10,23 +10,12 @@
         //Arquivo index responsável pela inicialização do sistema
         require_once 'sistema/configuracao.php';
         include_once 'helpers.php';
-
-        $cpf = '004.348.491-38';
+        include './sistema/Nucleo/Mensagem.php';
         
-        var_dump(validarCPF($cpf));
-        //echo $limparNumero = preg_replace('/[^0-9]/', ' ', $cpf);
-
-        //for ($t = 9; $t < 11; $t++) {
-        //    for ($d = 0, $c = 0; $c < $t; $c++) {
-        //        $d += $cpf[$c] * (($t + 1) - $c);
-        //    }
-        //    $d = ((10 * $d) % 11) % 10;
-        //    if ($cpf[$c] != $d) {
-        //        echo 'CPF INVÁLIDO';
-        //    } else {
-        //        echo 'CPF VÁLIDO';
-        //    }
-        //}
+        $msg = new Mensagem();
+        echo $msg->renderizar();
+        echo '<hr>';
+        var_dump($msg);
         
         ?>	
     </body>
