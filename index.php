@@ -6,6 +6,8 @@
         <title>Document</title>
     </head>
     <body>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        
         <?php
         //Arquivo index responsável pela inicialização do sistema
         require_once 'sistema/configuracao.php';
@@ -13,7 +15,13 @@
         include './sistema/Nucleo/Mensagem.php';
         
         $msg = new Mensagem();
-        echo $msg->renderizar();
+        echo $msg->sucesso('Mensagem de sucesso')->renderizar();
+        echo '<hr>';
+        echo $msg->erro('Mensagem de erro')->renderizar();
+        echo '<hr>';
+        echo $msg->alerta('Mensagem de alerta')->renderizar();
+        echo '<hr>';
+        echo $msg->informa('Mensagem de informações')->renderizar();
         echo '<hr>';
         var_dump($msg);
         
