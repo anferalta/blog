@@ -14,16 +14,11 @@
         include_once 'helpers.php';
         include './sistema/Nucleo/Mensagem.php';
         
-        $msg = new Mensagem();
-        echo $msg->sucesso('Mensagem de sucesso')->renderizar();
+        //$msg = new Mensagem();
+        //echo $msg->scesso('Mensagem de sucesso')->renderizar();
+        
+        echo (new Mensagem())->erro('Mensagem de erro')->renderizar();
         echo '<hr>';
-        echo $msg->erro('Mensagem de erro')->renderizar();
-        echo '<hr>';
-        echo $msg->alerta('Mensagem de alerta')->renderizar();
-        echo '<hr>';
-        echo $msg->informa('Mensagem de informações')->renderizar();
-        echo '<hr>';
-        var_dump($msg);
         
         ?>	
     </body>
