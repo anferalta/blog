@@ -17,7 +17,9 @@
         //$msg = new Mensagem();
         //echo $msg->scesso('Mensagem de sucesso')->renderizar();
         
-        echo (new Mensagem())->erro('Mensagem de erro')->renderizar();
+        echo (new Mensagem())->alerta('Texto de alerta');
+        
+        //echo (new Mensagem())->erro('Mensagem de erro')->renderizar();
         echo '<hr>';
         
         ?>	
