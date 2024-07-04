@@ -1,5 +1,7 @@
 <?php
 
+namespace sistema\Nucleo;
+
 /**
  * @author T A <john.doe@example.com>
  */

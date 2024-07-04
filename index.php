@@ -14,6 +14,8 @@
         include_once 'helpers.php';
         include './sistema/Nucleo/Mensagem.php';
         
+        use sistema\Nucleo\Mensagem;
+        
         //$msg = new Mensagem();
         //echo $msg->scesso('Mensagem de sucesso')->renderizar();
         
