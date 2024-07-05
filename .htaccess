@@ -1,0 +1,12 @@
+#adicionar comentário
+options -indexes
+
+RewriteEngine on
+
+RewriteBase /blog
+
+RewriteConde %{SCRIPT_FILENAME} !-f
+RewriteConde %{SCRIPT_FILENAME} !-d
+RewriteConde %{SCRIPT_FILENAME} !-l
+
+RewriteRule ^(.*)$ index.php/$1
