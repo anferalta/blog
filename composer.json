@@ -1,0 +1,17 @@
+{
+    "name": "github.com/anferalta",
+    "description": "Curso de PHP 8",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "sistema\\": "sistema/"
+        },
+        "files": [
+            "sistema/configuracao.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0"
+    }
+}

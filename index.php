@@ -9,28 +9,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
         
         <?php
-        //Arquivo index responsável pela inicialização do sistema
-        require_once 'sistema/configuracao.php';
-        include_once './sistema/Nucleo/helpers.php';
-        include './sistema/Nucleo/Mensagem.php';
         
-        use sistema\Nucleo\Helpers;
+        require 'vendor/autoload.php';
         
-        //use sistema\Nucleo\Mensagem;
-        
-        //$msg = new Mensagem();
-        //echo $msg->scesso('Mensagem de sucesso')->renderizar();
-        
-        //echo (new Mensagem())->alerta('Texto de alerta');
-        
-        //echo (new Mensagem())->erro('Mensagem de erro')->renderizar();
-        
-       // $helpers = new Helpers();
-       // echo $helpers->saudacao();
-        
-       echo Helpers::saudacao();
-       
-       
+        echo sistema\Nucleo\Helpers::saudacao();
         
         ?>	
     </body>
