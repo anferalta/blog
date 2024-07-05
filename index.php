@@ -11,18 +11,26 @@
         <?php
         //Arquivo index responsável pela inicialização do sistema
         require_once 'sistema/configuracao.php';
-        include_once 'helpers.php';
+        include_once './sistema/Nucleo/helpers.php';
         include './sistema/Nucleo/Mensagem.php';
         
-        use sistema\Nucleo\Mensagem;
+        use sistema\Nucleo\Helpers;
+        
+        //use sistema\Nucleo\Mensagem;
         
         //$msg = new Mensagem();
         //echo $msg->scesso('Mensagem de sucesso')->renderizar();
         
-        echo (new Mensagem())->alerta('Texto de alerta');
+        //echo (new Mensagem())->alerta('Texto de alerta');
         
         //echo (new Mensagem())->erro('Mensagem de erro')->renderizar();
-        echo '<hr>';
+        
+       // $helpers = new Helpers();
+       // echo $helpers->saudacao();
+        
+       echo Helpers::saudacao();
+       
+       
         
         ?>	
     </body>

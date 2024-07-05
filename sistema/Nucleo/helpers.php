@@ -1,8 +1,13 @@
 <?php
 
-function validarCPF(string $cpf) : bool
+namespace sistema\Nucleo;
+
+class Helpers
 {
-    $cpf = limparNumero($cpf);
+    
+public static function validarCPF(string $cpf) : bool
+{
+    $cpf = self::limparNumero($cpf);
     
     if(mb_strlen($cpf) != 11 or preg_match('/(\d)\1{10}/', $cpf)){
         return false;
@@ -19,12 +24,12 @@ function validarCPF(string $cpf) : bool
         return true;
 }
 
-function limparNumero(string $numero) : string
+public static function limparNumero(string $numero) : string
 {
     return preg_replace('/[^0-9]/', '', $numero);
 }
 
-function slug(string $string): string
+public static function slug(string $string): string
 {
     $mapa['a'] = 'ÁÀÂÃÇÉÈÊÍÌÎÑÓÒÕÔÚÙÛÝáàãâçéèêíìîñóòôõúùû@$%#&*() -+= {[]}/?´´|;:.,\\<> ';
 
@@ -39,7 +44,7 @@ function slug(string $string): string
     return strtolower(utf8_decode($slug));
 }
 
-function dataAtual(): string
+public static function dataAtual(): string
 {
     $diaMes = date('d');
     $diaSemana = date('w');
@@ -70,7 +75,7 @@ function dataAtual(): string
     return $dataFormatada;
 }
 
-function url(string $url): string
+public static function url(string $url): string
 {
     $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
     $ambiente = ($servidor == 'localhost' ? URL_DESENVOLVIMENTO : URL_PRODUÇAO);
@@ -82,7 +87,7 @@ function url(string $url): string
     return $ambiente . '/' . $url;
 }
 
-function localhost(): bool
+public static function localhost(): bool
 {
     $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
 
@@ -92,12 +97,12 @@ function localhost(): bool
     return false;
 }
 
-function validarUrlComFiltro(string $url): bool
+public static function validarUrlComFiltro(string $url): bool
 {
     return filter_var($url, FILTER_VALIDATE_URL);
 }
 
-function validarUrl(string $url): bool
+public static function validarUrl(string $url): bool
 {
     if (mb_strlen($url) < 10) {
         return false;
@@ -111,22 +116,22 @@ function validarUrl(string $url): bool
     return false;
 }
 
-function validarEmail(string $email): bool
+public static function validarEmail(string $email): bool
 {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-function formatarValor(float $valor): string
+public static function formatarValor(float $valor): string
 {
     return number_format($valor ?: 2, ",", ".");
 }
 
-function formatarNumero(string $numero = null): string
+public static function formatarNumero(string $numero = null): string
 {
     return number_format($numero ?: 0, 0, '.', '.');
 }
 
-function saudacao(): string
+public static function saudacao(): string
 {
 
     $hora = date('H');
@@ -150,7 +155,7 @@ function saudacao(): string
     return $saudacao;
 }
 
-function resumirTexto(string $texto, int $limite, string $continue = '...'): string
+public static function resumirTexto(string $texto, int $limite, string $continue = '...'): string
 {
     $textoLimpo = trim($texto);
     if (mb_strlen($textoLimpo) <= $limite) {
@@ -167,7 +172,7 @@ function resumirTexto(string $texto, int $limite, string $continue = '...'): str
  * @param string $data
  * @return string
  */
-function contarTempo(string $data): string
+public static function contarTempo(string $data): string
 {
     $agora = strtotime(date('Y-m-d H:i:s'));
     $tempo = strtotime($data);
@@ -196,4 +201,6 @@ function contarTempo(string $data): string
     } else {
         return $ano == 1 ? 'há 1 ano' : 'há ' . $ano . ' anos';
     }
+}
+
 }
