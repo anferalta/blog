@@ -133,7 +133,6 @@ public static function formatarNumero(string $numero = null): string
 
 public static function saudacao(): string
 {
-
     $hora = date('H');
     if ($hora >= 0 && $hora <= 5) {
         $saudacao = 'boa madrugada';

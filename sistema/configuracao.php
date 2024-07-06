@@ -13,7 +13,4 @@ define('URL_PRODUÇAO', 'http://unset.com.br');
 define('URL_DESENVOLVIMENTO', 'http://localhost/blog');
 
 
-
-
-
-?>
+//?>
