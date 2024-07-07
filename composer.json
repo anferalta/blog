@@ -1,15 +1,21 @@
 {
     "name": "github.com/anferalta",
     "description": "Curso de PHP 8",
-    "type": "project",
+    "type": "n",
     "autoload": {
         "psr-4": {
             "sistema\\": "sistema/"
         },
-        "files": [
+        "files":[
             "sistema/configuracao.php"
         ]
     },
+    "authors": [
+        {
+            "name": "anferalta",
+            "email": "150276760+anferalta@users.noreply.github.com"
+        }
+    ],
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.0"
