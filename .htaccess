@@ -5,9 +5,4 @@ options -indexes
 RewriteBase /blog
 
 RewriteEngine on
-RewriteConde %{SCRIPT_FILENAME} !-f
-RewriteConde %{SCRIPT_FILENAME} !-d
-RewriteConde %{SCRIPT_FILENAME} !-l
-
-RewriteRule ^(.*)$ index.php/$1
 

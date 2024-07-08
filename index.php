@@ -12,16 +12,10 @@
         //Arquivo index responsavel pela inicialização do sistema
         
         require 'vendor/autoload.php';
-        //require 'rotas.php';
+        require 'rotas.php';
         
-        
-         echo '<hr>';
-         echo sistema\Nucleo\Helpers::saudacao();
-         echo '<hr>';
-         echo sistema\Nucleo\Helpers::dataAtual();
-         echo '<hr>';
-         
-        
+                     
+                 
         ?>	
     </body>
 </html>
