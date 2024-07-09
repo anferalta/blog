@@ -1,8 +1,9 @@
-
 #adicionar comentário
+
 options -indexes
+
+RewriteEngine on
 
 RewriteBase /blog
 
-RewriteEngine on
 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>index</title>
     </head>
     <body>
        
@@ -14,7 +14,8 @@
         require 'vendor/autoload.php';
         require 'rotas.php';
         
-                     
+        //echo SITE_NOME;
+        //echo sistema\Nucleo\Helpers::saudacao();             
                  
         ?>	
     </body>

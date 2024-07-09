@@ -1,7 +1,7 @@
 {
     "name": "github.com/anferalta",
     "description": "Curso de PHP 8",
-    "type": "n",
+    "type": "project",
     "autoload": {
         "psr-4": {
             "sistema\\": "sistema/"
@@ -18,6 +18,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "pecee/simple-router": "dev-master",
+        "twig/twig": "^3.0"
     }
 }
