@@ -1,6 +1,5 @@
 <?php
 
-
 namespace sistema\Nucleo;
 
 use sistema\Suporte\Template;

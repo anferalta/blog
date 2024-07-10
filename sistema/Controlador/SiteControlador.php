@@ -6,7 +6,6 @@ use sistema\Nucleo\Controlador;
 
 class SiteControlador extends Controlador
 {
-    
     public function __construct()
     {
         parent::__construct('templates/site/views');
