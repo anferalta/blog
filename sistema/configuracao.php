@@ -5,6 +5,12 @@
 //define o fuso horário
 date_default_timezone_set('Africa/Luanda');
 
+define('DB_HOST', 'localhost');
+define('DB_PORTA', '3306');
+define('DB_NOME', 'blog');
+define('DB_USUARIO', 'root');
+define('DB_SENHA', '');
+
 //informações do sistema
 define('SITE_NOME', 'UnSet');
 define('SITE_DESCRIÇAO', 'UnSet - Tecnologia em Sistemas');
