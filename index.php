@@ -14,9 +14,18 @@
         require 'vendor/autoload.php';
         //require 'rotas.php';
         
-        use sistema\Nucleo\conexao;
+        //use sistema\Nucleo\conexao;
         
-        $con = conexao::getInstancia();
+        //$con = conexao::getInstancia();
+        
+        use sistema\Modelo\PostModelo;
+        
+        $posts = (new PostModelo())->ler();
+        
+        foreach ($posts as $posts){
+            echo $posts->titulo.'<br>';
+        }
+            
         
         //echo SITE_NOME;
         //echo sistema\Nucleo\Helpers::saudacao();             
