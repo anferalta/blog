@@ -5,6 +5,7 @@
 //define o fuso horário
 date_default_timezone_set('Africa/Luanda');
 
+//define nomes do BANCO DE DADOS
 define('DB_HOST', 'localhost');
 define('DB_PORTA', '3306');
 define('DB_NOME', 'blog');

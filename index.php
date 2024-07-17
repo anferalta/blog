@@ -24,6 +24,7 @@
         
         foreach ($posts as $posts){
             echo $posts->titulo.'<br>';
+            echo $posts->texto.'<br>';
         }
             
         

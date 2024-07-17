@@ -9,6 +9,7 @@ use sistema\Nucleo\conexao;
  *
  * @author Administrador
  */
+
 class PostModelo
 {
     public function ler(): array

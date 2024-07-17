@@ -12,7 +12,6 @@ use PDOException;
  */
 class conexao
 {
-
     private static $instancia;
 
     public static function getInstancia(): PDO
@@ -22,7 +21,7 @@ class conexao
             try {
                 self::$instancia = new PDO('mysql:host=' . DB_HOST . ';port=' . DB_PORTA . ' ;dbname=' . DB_NOME, DB_USUARIO, DB_SENHA, [
                     // garante que o charset do PDO seja o mesmp do banco de dados
-                    PDO::MYSQL_ATTR_INIT_COMMAND =>"SET NAMES utf8",
+                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
                     // todo erro através da PDO será uma execução
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     // converter qualquer resultado como um objecto anônimo
