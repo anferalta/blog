@@ -12,25 +12,8 @@
         //Arquivo index responsavel pela inicialização do sistema
         
         require 'vendor/autoload.php';
-        //require 'rotas.php';
-        
-        //use sistema\Nucleo\conexao;
-        
-        //$con = conexao::getInstancia();
-        
-        use sistema\Modelo\PostModelo;
-        
-        $posts = (new PostModelo())->ler();
-        
-        foreach ($posts as $posts){
-            echo $posts->titulo.'<br>';
-            echo $posts->texto.'<br>';
-        }
-            
-        
-        //echo SITE_NOME;
-        //echo sistema\Nucleo\Helpers::saudacao();             
-                 
+        //require 'rotas.php';               
         ?>	
+        
     </body>
 </html>

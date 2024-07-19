@@ -10,11 +10,11 @@ use sistema\Nucleo\conexao;
  * @author Administrador
  */
 
-class PostModelo
+class CategoriaModelo
 {
     public function busca(): array
     {
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM categorias";
         $stmt = conexao::getInstancia()->query($query);
         $resultado = $stmt->fetchAll();
         
@@ -23,7 +23,7 @@ class PostModelo
     
     public function buscaPorId(int $id): bool|object
     {
-        $query = "SELECT * FROM posts WHERE id = {$id}";
+        $query = "SELECT * FROM categorias WHERE id = {$id}";
         $stmt = conexao::getInstancia()->query($query);
         $resultado = $stmt->fetch();
         
