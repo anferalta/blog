@@ -25,27 +25,39 @@ class SiteControlador extends Controlador
         ]);
     }
 
+    public function buscar(): void
+    {
+        $busca = filter_input(INPUT_POST, 'busca', FILTER_DEFAULT);
+        if (isset($busca)) {
+            $posts = (new PostModelo())->pesquisa($busca);
+            
+            foreach ($posts as $spost) {
+                echo "<li class='list-group-item fw-bold'><a href=".Helpers::url('post/').$spost->id." class='text-white'>$post->titulo</a></li>";
+            }
+        }
+    }
+
     public function post(int $id): void
     {
         $post = (new PostModelo())->buscaPorId($id);
-        if(!$post){
+        if (!$post) {
             Helpers::redirecionar('404');
         }
-        
-        $this->template->renderizar('post.html', [
+
+        echo $this->template->renderizar('post.html', [
             'post' => $post
         ]);
     }
-    
+
     public function categorias(): array
     {
         return (new CategoriaModelo())->busca();
     }
-    
+
     public function categoria(int $id): void
     {
         $posts = (new CategoriaModelo())->posts($id);
-        
+
         echo $this->template->renderizar('categoria.html', [
             'posts' => $posts
         ]);

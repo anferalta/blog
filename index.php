@@ -6,14 +6,14 @@
         <title>index</title>
     </head>
     <body>
-       
-        <?php
 
+        <?php
         //Arquivo index responsavel pela inicialização do sistema
-        
+
         require 'vendor/autoload.php';
-        require 'rotas.php';               
-        ?>	
+        require 'rotas.php';     
         
-    </body>
+        
+        ?>	
+
 </html>
