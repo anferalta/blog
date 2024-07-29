@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "512c9dda9b88d5d330399cbb48845c3b",
+    "content-hash": "ff08eec69de4656c0a0ce7cc0a280011",
     "packages": [
         {
             "name": "pecee/simple-router",
@@ -458,17 +458,57 @@
             "time": "2024-06-19T12:30:46+00:00"
         },
         {
+            "name": "twbs/bootstrap-icons",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/icons.git",
+                "reference": "9ee0d1937adbb827d1c984ba38c50ac70becf8da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/9ee0d1937adbb827d1c984ba38c50ac70becf8da",
+                "reference": "9ee0d1937adbb827d1c984ba38c50ac70becf8da",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "Official open source SVG icon library for Bootstrap",
+            "homepage": "https://icons.getbootstrap.com/",
+            "keywords": [
+                "bootstrap",
+                "icon font",
+                "icons",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/icons/issues",
+                "source": "https://github.com/twbs/icons/tree/main"
+            },
+            "time": "2024-07-01T14:03:35+00:00"
+        },
+        {
             "name": "twig/twig",
             "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "51e7e5c405a74543c74da030c9852ac0fc3345d5"
+                "reference": "ae04075ed1db210dcfdf6ed9a2a765b5cab15a32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/51e7e5c405a74543c74da030c9852ac0fc3345d5",
-                "reference": "51e7e5c405a74543c74da030c9852ac0fc3345d5",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ae04075ed1db210dcfdf6ed9a2a765b5cab15a32",
+                "reference": "ae04075ed1db210dcfdf6ed9a2a765b5cab15a32",
                 "shasum": ""
             },
             "require": {
@@ -536,7 +576,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-24T10:55:18+00:00"
+            "time": "2024-07-28T09:16:28+00:00"
         }
     ],
     "packages-dev": [],

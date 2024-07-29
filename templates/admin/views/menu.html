@@ -1,7 +1,29 @@
-<ul class="list-group">
-  <li class="list-group-item">An item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
-</ul>
+<input type="chekbox" id="menu">
+<div class="sidebar">
+    <div class="sidebarLogo">
+        <a href="{{url('admin/dashboard')}}" data-bs-toggle="tooltip" title="Página Inicial">
+            <div class="logo">
+                <img src="../templates/admin/assets/img/php-logo.svg" alt=" {{constant('SITE_NOME')}}"/>
+            </div>
+        </a>
+    </div>
+    
+    <div class="sidebarMenu">
+        <li class="sidebarTitulo">
+            Administração
+        </li>
+        <li>
+            <a href="{{url('admin/posts/listar')}}" tooltip="tooltip" title="Administração de Posts">
+                <i class="fa-solid fa-file-pen"></i>
+                <span>Posts</span>
+            </a>
+        </li>
+        <<li>
+            <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+        </li>
+    </div>
+</div>    
+
+
+
+
