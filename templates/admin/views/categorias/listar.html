@@ -8,31 +8,31 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Título</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Acção</th>
-    </tr>
-  </thead>
-  <tbody>
-      {% for categoria in categorias %}
-    <tr>
-      <th>{{categoria.id}}</th>
-      <td>{{categoria.titulo}}</td>
-      <td>
-          {% if categoria.status == 1 %}
-          Activo
-          {% else %}
-          Inactivo
-          {% endif %}
-      </td>
-      <td>@mdo</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acção</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoria in categorias %}
+                    <tr>
+                        <th>{{categoria.id}}</th>
+                        <td>{{categoria.titulo}}</td>
+                        <td>
+                            {% if categoria.status == 1 %}
+                            Activo
+                            {% else %}
+                            Inactivo
+                            {% endif %}
+                        </td>
+                        <td>@mdo</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
         {% for categoria in categorias %}
         {{categoria.titulo}}
