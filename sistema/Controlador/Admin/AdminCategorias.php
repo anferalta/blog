@@ -3,6 +3,7 @@
 namespace sistema\Controlador\Admin;
 
 use sistema\Modelo\CategoriaModelo;
+use sistema\Nucleo\Helpers;
 
 /**
  * Description of AdminCategorias
@@ -23,7 +24,8 @@ class AdminCategorias extends AdminControlador
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            
+            (new CategoriaModelo())->armazenar($dados);
+            Helpers::redirecionar('admin/categorias/listar');
         }
         echo $this->template->renderizar('categorias/formulario.html', []);
     }

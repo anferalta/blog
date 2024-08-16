@@ -41,7 +41,13 @@ class PostModelo
         return $resultado;
         }
     }
-
+    
+    public function armazenar(array $dados): void{
+        $query="INSERT INTO `posts` (categoria_id, `titulo`, `texto`, `status`) VALUES :categoria_id,:titulo, :texto, :status);";
+        $stmt = conexao::getInstancia()->prepare($query);
+        $stmt->execute([$dados]);
+    }
+   
 //return $resultado;
 }
 
