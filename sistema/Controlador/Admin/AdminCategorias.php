@@ -19,14 +19,31 @@ class AdminCategorias extends AdminControlador
             'categorias' => (new CategoriaModelo())->busca()
         ]);
     }
-    
+           
     public function cadastrar(): void
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (isset($dados)){
+        if(isset($dados)){
             (new CategoriaModelo())->armazenar($dados);
             Helpers::redirecionar('admin/categorias/listar');
         }
-        echo $this->template->renderizar('categorias/formulario.html', []);
+        echo $this->template->renderizar('categorias/formulario.html', [
+            'categorias'=> (new CategoriaModelo())->busca()]);
+        
+    }
+    
+     public function editar(int $id): void
+    {
+        $categorias = (new CategoriaModelo())->buscaPorId($id);
+        
+        $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if(isset($dados)){
+            (new CategoriaModelo())->atualizar($dados, $id);
+            Helpers::redirecionar('admin/categorias/listar');
+        }
+        
+        echo $this->template->renderizar('categorias/formulario.html', [
+            'categoria' => $categorias
+    ]);     
     }
 }

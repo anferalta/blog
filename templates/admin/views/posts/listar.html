@@ -11,10 +11,10 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Título</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acção</th>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Status</th>
+                        <th class="text-center">Acção</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,50 +29,15 @@
                             Inactivo
                             {% endif %}
                         </td>
-                        <td>@mdo</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% for post in posts %}
-        {{post.titulo}}
-        {% endfor %}
-    </div>
-    
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Título</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acção</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for categoria in categorias %}
-                    <tr>
-                        <th>{{categoria.id}}</th>
-                        <td>{{categoria.titulo}}</td>
-                        <td>
-                            {% if categoria.status == 1 %}
-                            Activo
-                            {% else %}
-                            Inactivo
-                            {% endif %}
+                        <td class="text-center">
+                             <a href="{{ url('admin/posts/editar/'~post.id) }}">Editar</a>
                         </td>
-                        <td>@mdo</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        {% for categoria in categorias %}
-        {{categoria.titulo}}
-        {% endfor %}
-    
-    
-</div>
+        
+    </div> 
+ </div>
 {% endblock %}

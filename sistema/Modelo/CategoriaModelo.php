@@ -30,9 +30,17 @@ class CategoriaModelo
         return $resultado;
     }
     
-    public function armazenar(array $dados): void{
-        $query="INSERT INTO `categorias` (`titulo`, `texto`, `status`) VALUES ?, ?, ?);";
+    public function armazenar(array $dados): void
+    {
+        $query="INSERT INTO categorias (`titulo`, `texto`, `status`) VALUES (?, ?, ?);";
         $stmt = conexao::getInstancia()->prepare($query);
         $stmt->execute([$dados['titulo'], $dados['texto'], $dados['status']]);
+    }
+    
+    public function atualizar(array $dados, int $id): void
+    {
+        $query = "UPDATE categorias SET titulo = :titulo, texto = :texto, status = :status WHERE id = {$id} ";
+        $stmt = conexao::getInstancia()->prepare($query);
+        $stmt->execute($dados);
     }
 }

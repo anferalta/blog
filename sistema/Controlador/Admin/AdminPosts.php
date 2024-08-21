@@ -24,10 +24,26 @@ class AdminPosts extends AdminControlador
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            (new PostModeloModelo())->armazenar($dados);
+            (new PostModelo())->armazenar($dados);
             Helpers::redirecionar('admin/posts/listar');
         }
+        
         echo $this->template->renderizar('posts/formulario.html', [
+            'categorias'=> (new CategoriaModelo())->busca()]);
+                
+    }
+    public function editar(int $id): void
+    {
+        $post = (new PostModelo())->buscaPorId($id);
+        
+        $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (isset($dados)){
+            (new PostModelo())->atualizar($dados, $id);
+            Helpers::redirecionar('admin/posts/listar');
+        }
+        
+        echo $this->template->renderizar('posts/formulario.html', [
+            'post' => $post,
             'categorias'=> (new CategoriaModelo())->busca()]);
     }
 }

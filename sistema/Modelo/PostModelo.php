@@ -43,12 +43,19 @@ class PostModelo
     }
     
     public function armazenar(array $dados): void{
-        $query="INSERT INTO `posts` (categoria_id, `titulo`, `texto`, `status`) VALUES :categoria_id,:titulo, :texto, :status);";
+        $query="INSERT INTO posts (categoria_id,`titulo`, `texto`, `status`) VALUES (:categoria_id, :titulo, :texto, :status)";
         $stmt = conexao::getInstancia()->prepare($query);
-        $stmt->execute([$dados]);
+        $stmt->execute($dados);
     }
    
-//return $resultado;
+    
+    public function atualizar(array $dados, int $id): void
+    {
+        $query = "UPDATE posts SET titulo = :titulo, texto = :texto, status = :status WHERE id = {$id}";
+        $stmt = conexao::getInstancia()->prepare($query);
+        $stmt->execute($dados);
+    }
+
 }
 
    
