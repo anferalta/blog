@@ -15,8 +15,15 @@ class AdminCategorias extends AdminControlador
 {
     public function listar(): void
     {
+        $categorias = new CategoriaModelo();
+        
         echo $this->template->renderizar('categorias/listar.html', [
-            'categorias' => (new CategoriaModelo())->busca()
+            'categorias' => $categorias->busca(), 
+            'total' => [
+                'total' => $categorias->total(),
+                'activo' => $categorias->total('status = 1'),
+                'inactivo' => $categorias->total('status = 0')
+            ]
         ]);
     }
            

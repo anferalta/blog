@@ -16,8 +16,15 @@ class AdminPosts extends AdminControlador
 {
     public function listar(): void
     {
+        $post = new PostModelo();
+        
         echo $this->template->renderizar('posts/listar.html', [
-            'posts' => (new PostModelo())->busca()
+            'posts' => $post->busca(),
+            'total' => [
+                'total' => $post->total(),
+                'activo' => $post->total('status = 1'),
+                'inactivo' => $post->total('status = 0')
+            ]
         ]);
     }
     public function cadastrar(): void

@@ -46,8 +46,19 @@ class CategoriaModelo
     
     public function deletar(int $id): void
     {
-        $query = "DELETE FROM categorias WHERE id = {$id}";
+        $query = "DELETE FROM categorias WHERE id = {$id} ";
         $stmt = conexao::getInstancia()->prepare($query);
         $stmt->execute();
+    }
+    
+    public function total(?string $termo = null): int
+    {
+        $termo = ($termo ? "WHERE {$termo}" : '' );
+        
+        $query = "SELECT * FROM categorias {$termo} ";
+        $stmt = conexao::getInstancia()->prepare($query);
+        $stmt->execute();
+        
+        return $stmt->rowCount();
     }
 }

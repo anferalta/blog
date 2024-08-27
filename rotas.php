@@ -27,7 +27,7 @@ try {
         SimpleRouter::match(['get','post'], URL_ADMIN.'categorias/cadastrar',           'AdminCategorias@cadastrar');
         SimpleRouter::match(['get','post'], URL_ADMIN.'categorias/editar/{id}',           'AdminCategorias@editar');
     });
-        SimpleRouter::get(URL_ADMIN.'categorias/deletar/{id}',           'AdminCategorias@deletar');
+        SimpleRouter::get(URL_ADMIN . 'categorias/deletar/{id}',           'AdminCategorias@deletar');
     
     
 
