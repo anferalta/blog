@@ -46,4 +46,10 @@ class AdminCategorias extends AdminControlador
             'categoria' => $categorias
     ]);     
     }
+    
+    public function deletar(int $id): void
+    {
+        (new CategoriaModelo())->deletar($id);
+            Helpers::redirecionar('admin/categorias/listar'); 
+    }
 }

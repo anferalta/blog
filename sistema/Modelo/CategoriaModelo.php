@@ -39,8 +39,15 @@ class CategoriaModelo
     
     public function atualizar(array $dados, int $id): void
     {
-        $query = "UPDATE categorias SET titulo = :titulo, texto = :texto, status = :status WHERE id = {$id} ";
+        $query = "UPDATE categorias SET titulo = ?, texto = ?, status = ? WHERE id = {$id} ";
         $stmt = conexao::getInstancia()->prepare($query);
-        $stmt->execute($dados);
+        $stmt->execute([$dados['titulo'], $dados['texto'], $dados['status']]);
+    }
+    
+    public function deletar(int $id): void
+    {
+        $query = "DELETE FROM categorias WHERE id = {$id}";
+        $stmt = conexao::getInstancia()->prepare($query);
+        $stmt->execute();
     }
 }

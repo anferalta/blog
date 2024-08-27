@@ -42,18 +42,25 @@ class PostModelo
         }
     }
     
-    public function armazenar(array $dados): void{
-        $query="INSERT INTO posts (categoria_id,`titulo`, `texto`, `status`) VALUES (:categoria_id, :titulo, :texto, :status)";
+    public function armazenar(array $dados): void
+    {
+        $query="INSERT INTO posts (`categoria_id`, `titulo`, `texto`, `status`) VALUES (?, ?, ?, ?)";
         $stmt = conexao::getInstancia()->prepare($query);
-        $stmt->execute($dados);
+        $stmt->execute([$dados['categoria_id'], $dados['titulo'], $dados['texto'], $dados['status']]);
     }
    
-    
     public function atualizar(array $dados, int $id): void
     {
-        $query = "UPDATE posts SET titulo = :titulo, texto = :texto, status = :status WHERE id = {$id}";
+        $query = "UPDATE posts SET categoria_id = ?, titulo = ?, texto = ?, status = ? WHERE id = {$id} ";
         $stmt = conexao::getInstancia()->prepare($query);
-        $stmt->execute($dados);
+        $stmt->execute([$dados['categoria_id'], $dados['titulo'], $dados['texto'], $dados['status']]);
+    }
+    
+    public function deletar(int $id): void
+    {
+        $query = "DELETE FROM posts WHERE id = {$id}";
+        $stmt = conexao::getInstancia()->prepare($query);
+        $stmt->execute();
     }
 
 }

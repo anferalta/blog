@@ -29,9 +29,11 @@ class AdminPosts extends AdminControlador
         }
         
         echo $this->template->renderizar('posts/formulario.html', [
+            'post' => (new PostModelo())->busca(),
             'categorias'=> (new CategoriaModelo())->busca()]);
                 
     }
+    
     public function editar(int $id): void
     {
         $post = (new PostModelo())->buscaPorId($id);
@@ -46,4 +48,11 @@ class AdminPosts extends AdminControlador
             'post' => $post,
             'categorias'=> (new CategoriaModelo())->busca()]);
     }
+        
+    public function deletar(int $id): void
+    {
+        (new PostModelo())->deletar($id);
+            Helpers::redirecionar('admin/posts/listar'); 
+    }
+    
 }
