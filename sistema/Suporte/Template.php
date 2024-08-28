@@ -46,6 +46,11 @@ class Template
                                 return Helpers::resumirTexto($texto, $limite);
                     })
             ),
+                            $this->twig->addFunction(
+                    new \Twig\TwigFunction('flash', function () {
+                                return Helpers::flash();
+                    })
+            ),
             
                             $this->twig->addFunction(
                     new \Twig\TwigFunction('dataAtual', function () {

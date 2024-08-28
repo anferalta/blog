@@ -32,6 +32,7 @@ class AdminPosts extends AdminControlador
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
             (new PostModelo())->armazenar($dados);
+            $this->mensagem->sucesso('Post cadastrado com sucesso')->flash();
             Helpers::redirecionar('admin/posts/listar');
         }
         
@@ -48,6 +49,7 @@ class AdminPosts extends AdminControlador
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
             (new PostModelo())->atualizar($dados, $id);
+            $this->mensagem->sucesso('Post atualizado com sucesso')->flash();
             Helpers::redirecionar('admin/posts/listar');
         }
         
@@ -59,6 +61,7 @@ class AdminPosts extends AdminControlador
     public function deletar(int $id): void
     {
         (new PostModelo())->deletar($id);
+        $this->mensagem->alerta('Post deletado com sucesso')->flash();
             Helpers::redirecionar('admin/posts/listar'); 
     }
     
