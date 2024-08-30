@@ -3,28 +3,25 @@
 namespace sistema\Modelo;
 
 use sistema\Nucleo\conexao;
+use sistema\Nucleo\Modelo;
 
 /**
  * Description of PostModelo
  *
  * @author Administrador
  */
-class PostModelo
+class PostModelo extends Modelo
 {
-    public function busca(?string $termo = null): array
+    const TABELA = 'POSTS';
+    
+    public function __construct()
     {
-        $termo = ($termo ? "WHERE {$termo}" : '' );
-        
-        $query = "SELECT * FROM posts {$termo} ";
-        $stmt = conexao::getInstancia()->query($query);
-        $resultado = $stmt->fetchAll();
-
-        return $resultado;
+        parent::__construct('posts');
     }
 
     public function buscaPorId(int $id): bool|object
     {
-        $query = "SELECT * FROM posts WHERE id = {$id}";
+        $query = "SELECT * FROM ". self::TABELA." WHERE id = {$id}";
         $stmt = conexao::getInstancia()->query($query);
         $resultado = $stmt->fetch();
 

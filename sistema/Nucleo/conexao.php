@@ -4,13 +4,15 @@ namespace sistema\Nucleo;
 
 use PDO;
 use PDOException;
+use sistema\Nucleo\Conexao;
+
 
 /**
  * Description of conexao
  *
  * @author Administrador
  */
-class conexao
+class Conexao
 {
 
     private static $instancia;
