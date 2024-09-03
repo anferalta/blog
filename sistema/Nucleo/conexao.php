@@ -14,7 +14,6 @@ use sistema\Nucleo\Conexao;
  */
 class Conexao
 {
-
     private static $instancia;
 
     public static function getInstancia(): PDO

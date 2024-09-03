@@ -27,17 +27,26 @@ class AdminPosts extends AdminControlador
             ]
         ]);
     }
+    
     public function cadastrar(): void
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            (new PostModelo())->armazenar($dados);
-            $this->mensagem->sucesso('Post cadastrado com sucesso')->flash();
-            Helpers::redirecionar('admin/posts/listar');
+            
+            $post = new PostModelo();
+            
+            $post->titulo = $dados['titulo'];
+            //$post->categoria_id = $dados['categoria_id'];
+            $post->texto = $dados['texto'];
+            $post->status = $dados['status'];
+            
+            if($post->salvar()){
+                $this->mensagem->sucesso('Post cadastrado com sucesso')->flash();
+                Helpers::redirecionar('admin/posts/listar');
+            }
         }
         
         echo $this->template->renderizar('posts/formulario.html', [
-            'post' => (new PostModelo())->busca(),
             'categorias'=> (new CategoriaModelo())->busca()]);
                 
     }
@@ -48,9 +57,18 @@ class AdminPosts extends AdminControlador
         
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            (new PostModelo())->atualizar($dados, $id);
-            $this->mensagem->sucesso('Post atualizado com sucesso')->flash();
-            Helpers::redirecionar('admin/posts/listar');
+           
+            $post = (new PostModelo())->buscaPorId($id);
+            
+            $post->titulo = $dados['titulo'];
+           // $post->categoria_id = $dados['categoria_id'];
+            $post->texto = $dados['texto'];
+            $post->status = $dados['status'];
+            
+            if($post->salvar()){
+                $this->mensagem->sucesso('Post atualizado com sucesso')->flash();
+                Helpers::redirecionar('admin/posts/listar');
+            }
         }
         
         echo $this->template->renderizar('posts/formulario.html', [
@@ -60,9 +78,21 @@ class AdminPosts extends AdminControlador
         
     public function deletar(int $id): void
     {
-        (new PostModelo())->deletar($id);
-        $this->mensagem->alerta('Post deletado com sucesso')->flash();
-            Helpers::redirecionar('admin/posts/listar'); 
+        if(is_int($id)){
+            $post = (new PostModelo())->buscaPorId($id);
+            if (!$post){
+                $this->mensagem->alerta('O post que voçê está tentando deletar não existe!')->flash();
+                Helpers::redirecionar('admin/posts/listar'); 
+            } else {
+                if($post->apagar("id = {$id}")){
+                    $this->mensagem->sucesso('Post deletado com sucesso!')->flash();
+                    Helpers::redirecionar('admin/posts/listar'); 
+                } else {
+                    $this->mensagem->erro($post->erro())->flash();
+                    Helpers::redirecionar('admin/posts/listar'); 
+                }
+            }
+        }
     }
     
 }

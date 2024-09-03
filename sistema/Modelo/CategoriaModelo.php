@@ -3,6 +3,7 @@
 namespace sistema\Modelo;
 
 use sistema\Nucleo\conexao;
+use sistema\Nucleo\Modelo;
 
 /**
  * Description of PostModelo
@@ -10,39 +11,38 @@ use sistema\Nucleo\conexao;
  * @author Administrador
  */
 
-class CategoriaModelo
+class CategoriaModelo extends Modelo
 {
-    public function busca(): array
-    {
-        $query = "SELECT * FROM categorias";
-        $stmt = conexao::getInstancia()->query($query);
-        $resultado = $stmt->fetchAll();
-        
-        return $resultado;
-    }
+    const TABELA = 'categorias';
     
+    public function __construct()
+    {
+        parent::__construct('categorias');
+    }
+
+
     public function buscaPorId(int $id): bool|object
     {
-        $query = "SELECT * FROM categorias WHERE id = {$id}";
+        $query = "SELECT * FROM ". self::TABELA." WHERE id = {$id}";
         $stmt = conexao::getInstancia()->query($query);
         $resultado = $stmt->fetch();
         
         return $resultado;
     }
     
-    public function armazenar(array $dados): void
-    {
-        $query="INSERT INTO categorias (`titulo`, `texto`, `status`) VALUES (?, ?, ?);";
-        $stmt = conexao::getInstancia()->prepare($query);
-        $stmt->execute([$dados['titulo'], $dados['texto'], $dados['status']]);
-    }
+    //public function armazenar(array $dados): void
+    //{
+     //   $query="INSERT INTO categorias (`titulo`, `texto`, `status`) VALUES (?, ?, ?);";
+       // $stmt = conexao::getInstancia()->prepare($query);
+        //$stmt->execute([$dados['titulo'], $dados['texto'], $dados['status']]);
+    //}
     
-    public function atualizar(array $dados, int $id): void
-    {
-        $query = "UPDATE categorias SET titulo = ?, texto = ?, status = ? WHERE id = {$id} ";
-        $stmt = conexao::getInstancia()->prepare($query);
-        $stmt->execute([$dados['titulo'], $dados['texto'], $dados['status']]);
-    }
+   // public function atualizar(array $dados, int $id): void
+    //{
+     //   $query = "UPDATE categorias SET titulo = ?, texto = ?, status = ? WHERE id = {$id} ";
+       // $stmt = conexao::getInstancia()->prepare($query);
+        //$stmt->execute([$dados['titulo'], $dados['texto'], $dados['status']]);
+    //}
     
     public function deletar(int $id): void
     {
