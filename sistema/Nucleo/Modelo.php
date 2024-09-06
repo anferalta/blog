@@ -10,9 +10,8 @@ use sistema\Nucleo\Mensagem;
  *
  * @author Administrador
  */
-class Modelo
+abstract class Modelo
 {
-
     protected $dados;
     protected $query;
     protected $erro;
@@ -85,12 +84,14 @@ class Modelo
     public function busca(string $termos = null, ?string $parametros = null, string $colunas = '*')
     {
         if ($termos) {
-            $this->query = "SELECT {$colunas} FROM " . $this->tabela . " WHERE {$termos} ";
+            $this->query = "SELECT {$colunas} FROM ".$this->tabela." WHERE {$termos} ";
             parse_str($parametros, $this->parametros);
+            
             return $this;
         }
 
         $this->query = "SELECT {$colunas} FROM " . $this->tabela;
+        
         return $this;
     }
 
@@ -109,8 +110,9 @@ class Modelo
             }
 
             return $stmt->fetchObject(static::class);
+            
         } catch (\PDOException $ex) {
-            $this->erro = $ex;
+            echo $this->erro = $ex;
             return null;
         }
     }
@@ -121,13 +123,14 @@ class Modelo
             $colunas = implode(',', array_keys($dados));
             $valores = ':' . implode(',:', array_keys($dados));
 
-            $query = "INSERT INTO " . $this->tabela . " ({$colunas}) VALUES ({$valores}) ";
+            $query = "INSERT INTO ".$this->tabela." ({$colunas}) VALUES ({$valores}) ";
             $stmt = Conexao::getInstancia()->prepare($query);
             $stmt->execute($this->filtro($dados));
 
             return Conexao::getInstancia()->lastInsertId();
+            
         } catch (\PDOException $ex) {
-            $this->erro = $ex;
+            echo $this->erro = $ex;
             return null;
         }
     }
@@ -142,14 +145,15 @@ class Modelo
             }
             $set = implode(', ', $set);
 
-            $query = "UPDATE " . $this->tabela . " SET {$set} WHERE {$termos}";
+            $query = "UPDATE ".$this->tabela." SET {$set} WHERE {$termos}";
 
             $stmt = Conexao::getInstancia()->prepare($query);
             $stmt->execute($this->filtro($dados));
 
             return ($stmt->rowCount() ?? 1);
+            
         } catch (\PDOException $ex) {
-            $this->erro = $ex;
+            echo $this->erro = $ex;
             return null;
         }
     }
@@ -168,11 +172,14 @@ class Modelo
     protected function armazenar()
     {
         $dados = (array) $this->dados;
+        
+        return $dados;
     }
 
     public function buscaPorId(int $id)
     {
         $busca = $this->busca("id = {$id}");
+        
         return $busca->resultado();
     }
 
@@ -186,9 +193,19 @@ class Modelo
             return true;
             
         } catch (\PDOException $ex) {
-            $this->erro = $ex->getMessage();
+            echo $this->erro = $ex->getMessage();
             return null;
         }
+    }
+    
+    public function deletar()
+    {
+        if (empty($this->id)){
+            return false;
+        }
+        
+        $deletar = $this->apagar("id = {$this->id}");
+        return $deletar;
     }
     
     public function total(): int
@@ -204,6 +221,7 @@ class Modelo
         //CADASTRAR
         if (empty($this->id)) {
             $id = $this->cadastrar($this->armazenar());
+            
             if ($this->erro) {
                 $this->mensagem->erro('Erro de sistema ao tentar cadastrar os dados');
                 return false;

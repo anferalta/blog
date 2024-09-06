@@ -40,17 +40,19 @@
                         <td>{{post.titulo}}</td>
                         <td>
                             {% if post.status == 1 %}
-                            Activo
+                                Activo
                             {% else %}
-                            Inactivo
+                                Inactivo
                             {% endif %}
                         </td>
+                                                                        
                         <td class="text-center">
                              <a href="{{ url('admin/posts/editar/'~post.id) }}">Editar</a>
                              <a href="{{ url('admin/posts/deletar/'~post.id) }}">Deletar</a>
                         </td>
                     </tr>
                     {% endfor %}
+                    
                 </tbody>
             </table>
         </div>

@@ -13,7 +13,13 @@ try {
     SimpleRouter::post(URL_SITE . 'buscar', 'SiteControlador@buscar');
     SimpleRouter::get(URL_SITE . '404', 'SiteControlador@erro404');
     
+    //ROTAS ADMIN
     SimpleRouter::group(['namespace' => 'Admin'], function() {
+        
+        //ADMIN LOGIN
+        SimpleRouter::match(['get','post'], URL_ADMIN.'login', 'Adminlogin@login');
+        
+        //DASHBOARD
         SimpleRouter::get(URL_ADMIN . 'dashboard', 'AdminDashboard@dashboard');
         
         //ADMIN POSTS

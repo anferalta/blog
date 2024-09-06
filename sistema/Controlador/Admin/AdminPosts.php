@@ -18,13 +18,14 @@ class AdminPosts extends AdminControlador
     {
         $post = new PostModelo();
         
-        echo $this->template->renderizar('posts/listar.html', [
-            'posts' => $post->busca()->ordem('status ASC, id DESC')->resultado(true),
+            echo $this->template->renderizar('posts/listar.html', [
+            'posts' => $post->busca()->ordem('status ASC, titulo ASC')->resultado(true),
+        
             'total' => [
                 'total' => $post->total(),
-                'activo' => $post->total('status = 1'),
-                'inactivo' => $post->total('status = 0')
-            ]
+                'activo' => $post->busca('status = 1')->total(),
+                'inactivo' => $post->busca('status = 0')->total()
+            ],
         ]);
     }
     
@@ -32,11 +33,11 @@ class AdminPosts extends AdminControlador
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            
             $post = new PostModelo();
+            $categorias = new CategoriaModelo();
             
             $post->titulo = $dados['titulo'];
-            //$post->categoria_id = $dados['categoria_id'];
+            $post->categoria_id = $dados['categoria_id'];
             $post->texto = $dados['texto'];
             $post->status = $dados['status'];
             
@@ -60,8 +61,8 @@ class AdminPosts extends AdminControlador
            
             $post = (new PostModelo())->buscaPorId($id);
             
+            $post->categoria_id = $dados['categoria_id'];
             $post->titulo = $dados['titulo'];
-           // $post->categoria_id = $dados['categoria_id'];
             $post->texto = $dados['texto'];
             $post->status = $dados['status'];
             
@@ -84,7 +85,7 @@ class AdminPosts extends AdminControlador
                 $this->mensagem->alerta('O post que voçê está tentando deletar não existe!')->flash();
                 Helpers::redirecionar('admin/posts/listar'); 
             } else {
-                if($post->apagar("id = {$id}")){
+                if($post->deletar()){
                     $this->mensagem->sucesso('Post deletado com sucesso!')->flash();
                     Helpers::redirecionar('admin/posts/listar'); 
                 } else {

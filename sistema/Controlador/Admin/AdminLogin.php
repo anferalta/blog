@@ -10,19 +10,18 @@ use sistema\Nucleo\Helpers;
  *
  * @author Administrador
  */
-class AdminControlador extends Controlador
+class AdminLogin extends Controlador
 {
     public function __construct()
     {
         parent::__construct('templates/admin/views');
         
-        $usuario = false;
+    }
+    
+    public function login(): void
+    {
         
-        if(!$usuario){
-            $this->mensagem->erro('Faça login para acessar o painel de controle!')->flash();
-            
-            Helpers::redirecionar('admin/login');
-        }
+        echo $this->template->renderizar('login.html', []);
     }
 }
 
