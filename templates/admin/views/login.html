@@ -1,29 +1,42 @@
 {% extends 'base.html' %}
 {% block corpo %} 
 
-<main class="form-signin w-25 m-auto">
-    <form>
-        <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<div class="fundo15 p-3">
+    <div class="col-md-6 col-sm-6 col-lg-4 mx-auto">
+        <div class="card-mt-5">
+            <div class="card-body">
+                <h1 class="h3 mb-3 fw-normal">Painel Administrativo</h1>
+                <p>Digite o email e a senha, para ter acesso ao painel.</p>
 
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
+                {{ flash() }}
 
-        <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Remember me
-            </label>
+                <form action="{{url('admin/login')}}" method="post">
+
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                        
+                        <br>
+                        
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div class="form-check text-start my-3">
+                            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+                        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023–2024</p>
+                    </div>
+                </form>
+
+            </div>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
-    </form>
-</main>
+    </div>
+</div>
 
 {% endblock %}
