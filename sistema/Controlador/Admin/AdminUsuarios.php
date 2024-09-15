@@ -49,8 +49,7 @@ class AdminUsuarios extends AdminControlador
                         $this->mensagem->sucesso('Usuário cadastrado com sucesso')->flash();
                         Helpers::redirecionar('admin/usuarios/listar');
                     }else {
-                        $this->mensagem->erro($usuario->erro())->flash();
-                        Helpers::redirecionar('admin/usuarios/cadastrar');
+                        $usuario->mensagem()->flash();
                     }
         }
     }    
@@ -80,8 +79,7 @@ class AdminUsuarios extends AdminControlador
                 $this->mensagem->sucesso('Usuário atualizado com sucesso')->flash();
                 Helpers::redirecionar('admin/usuarios/listar');
             }else {
-                    $this->mensagem->erro($usuario->erro())->flash();
-                    Helpers::redirecionar('admin/usuarios/cadastrar');
+                    $usuario->mensagem()->flash();
                     }
             }
         
