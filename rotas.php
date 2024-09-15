@@ -21,6 +21,13 @@ try {
         
         //DASHBOARD
         SimpleRouter::get(URL_ADMIN . 'dashboard', 'AdminDashboard@dashboard');
+        SimpleRouter::get(URL_ADMIN . 'sair', 'AdminDashboard@sair');
+        
+        //ADMIN USUÁRIOS
+        SimpleRouter::get(URL_ADMIN . 'usuarios/listar', 'AdminUsuarios@listar');
+        SimpleRouter::match(['get','post'], URL_ADMIN.'usuarios/cadastrar',           'AdminUsuarios@cadastrar');
+        SimpleRouter::match(['get','post'], URL_ADMIN.'usuarios/editar/{id}',           'AdminUsuarios@editar');
+        SimpleRouter::get(URL_ADMIN.'usuarios/deletar/{id}','AdminUsuarios@deletar');
         
         //ADMIN POSTS
         SimpleRouter::get(URL_ADMIN . 'posts/listar', 'AdminPosts@listar');
@@ -33,7 +40,7 @@ try {
         SimpleRouter::match(['get','post'], URL_ADMIN.'categorias/cadastrar',           'AdminCategorias@cadastrar');
         SimpleRouter::match(['get','post'], URL_ADMIN.'categorias/editar/{id}',           'AdminCategorias@editar');
     });
-        SimpleRouter::get(URL_ADMIN . 'categorias/deletar/{id}',           'AdminCategorias@deletar');
+        SimpleRouter::get(URL_ADMIN.'categorias/deletar/{id}','AdminCategorias@deletar');
     
     
 

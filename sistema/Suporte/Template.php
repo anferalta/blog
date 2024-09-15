@@ -4,6 +4,7 @@ namespace sistema\Suporte;
 
 use Twig\Lexer;
 use sistema\Nucleo\Helpers;
+use sistema\Controlador\UsuarioControlador;
 
 class Template
 {
@@ -56,7 +57,13 @@ class Template
                     new \Twig\TwigFunction('dataAtual', function () {
                                 return Helpers::dataAtual();
                     })
-        )
+        ),
+                            
+                            $this->twig->addFunction(
+                    new \Twig\TwigFunction('usuario', function () {
+                                return UsuarioControlador::usuario();
+                    })
+            )
       );
     }
 }

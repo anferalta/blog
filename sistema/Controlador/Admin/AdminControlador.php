@@ -23,7 +23,7 @@ class AdminControlador extends Controlador
         
         $this->usuario = UsuarioControlador::usuario();
         
-        if($this->usuario OR $this->usuario->level != 3){
+        if(!$this->usuario OR $this->usuario->level != 3){
             $this->mensagem->erro('Faça login para acessar o painel de controle!')->flash();
             
             $sessao = new Sessao();

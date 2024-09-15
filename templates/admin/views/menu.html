@@ -13,18 +13,26 @@
             Administração
         </li>
         <li>
+            {%if usuario().level == 3%}
             <a href="{{url('admin/posts/listar')}}" tooltip="tooltip" title="Administração de Posts">
                 <i class="fa-solid fa-file-pen"></i>
                 <span>Posts</span>
             </a>
+            {% endif %}
         </li>
         <li>
+            {%if usuario().level == 3%}
             <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
                 <span>Categorias</span>
+            </a>
+            {%endif%}
         </li>
         <li>
+            {%if usuario().level == 3%}
             <a href="{{url('admin/usuarios/listar')}}" tooltip="tooltip" title="Administração de Categorias">
                 <span>Usuarios</span>
+            </a>
+            {%endif%}
         </li>
     </div>
 </div>    
