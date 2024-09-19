@@ -21,6 +21,7 @@
         "php": ">=8.0",
         "pecee/simple-router": "dev-master",
         "twig/twig": "^3.0",
-        "twbs/bootstrap-icons": "*"
+        "twbs/bootstrap-icons": "*",
+        "symfony/asset": "7.2.x-dev"
     }
 }

@@ -4,6 +4,7 @@ namespace sistema\Modelo;
 
 use sistema\Nucleo\Modelo;
 use sistema\Nucleo\Sessao;
+use sistema\Nucleo\Helpers;
 
 
 /**
@@ -34,7 +35,7 @@ class UsuarioModelo extends Modelo
             return false;
         }
         
-        if ($dados['senha'] != $usuario->senha){
+        if (!Helpers::verificarSenha($dados['senha'], $usuario->senha)){
             $this->mensagem->alerta("Os dados informados para o login estão incorrectos!")->flash();
             return false;
         }
@@ -60,38 +61,13 @@ class UsuarioModelo extends Modelo
     
     public function salvar()
     {
-        //CADASTRAR
-        if (empty($this->id)) {
-            
-            if ($this->buscaPorEmail($this->email)) {
+        if ($this->busca("email = :e AND id != :id","e={$this->email}&id={$this->id}")->resultado()) {
                 $this->mensagem->alerta("O e-mail ".$this->dados->email." já está cadastrado");
                 return false;
             }
             
-            $id = $this->cadastrar($this->armazenar());
+            parent::salvar();
             
-            if ($this->erro) {
-                $this->mensagem->erro('Erro de sistema ao tentar cadastrar os dados');
-                return false;
-            }
-        }
-
-        //ATUALIZAR
-        if (!empty($this->id)) {
-            $id = $this->id;
-            
-            if ($this->busca("email = :e AND id != :id","e={$this->email}&id={$this->id}")->resultado()) {
-                $this->mensagem->alerta("O e-mail ".$this->dados->email." já está cadastrado");
-                return false;
-            }
-            
-            $this->atualizar($this->armazenar(), "id = {$id}");
-            if ($this->erro) {
-                $this->mensagem->erro('Erro de sistema ao tentar atualizar os dados');
-                return false;
-            }
-        }
-        $this->dados = $this->buscaPorId($id)->dados();
         return true;
     }
 }
