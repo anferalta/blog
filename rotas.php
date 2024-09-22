@@ -41,9 +41,7 @@ try {
         SimpleRouter::match(['get','post'], URL_ADMIN.'categorias/editar/{id}',           'AdminCategorias@editar');
     });
         SimpleRouter::get(URL_ADMIN.'categorias/deletar/{id}','AdminCategorias@deletar');
-    
-    
-
+        
     SimpleRouter::start();
 } catch (Pecee\SimpleRouter\Exceptions\NotFoundHttpException $ex) {
     if (Helpers::localhost()) {

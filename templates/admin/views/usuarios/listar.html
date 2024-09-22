@@ -44,9 +44,8 @@
                         <th>id</th>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th class="text-center">Level</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Acção</th>
+                        <th>Level</th>
+                        <th>Acção</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,14 +65,14 @@
                             <div class="text-secondary">Usuário</div>
                             {% endif %}
                         </td>
-                        <td class="text-center">
+                        <td>
                             {% if usuario.status == 1 %}
                             <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
                             {% else %}
                             <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inativo"></i>
                             {% endif %}
                         </td>              
-                        <td class="text-center">
+                        <td>
                              <a href="{{ url('admin/usuarios/editar/'~usuario.id) }}">Editar</a>
                              <a href="{{ url('admin/usuarios/deletar/'~usuario.id) }}">Deletar</a>
                         </td>

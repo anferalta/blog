@@ -18,5 +18,11 @@ class CategoriaModelo extends Modelo
     {
         parent::__construct('categorias');
     }
+    
+    public function posts(int $id): ?array
+    {
+        $busca = (new PostModelo())->busca("categoria_id = {$id}");
+        return $busca->resultado(true);
+    }
 
 }

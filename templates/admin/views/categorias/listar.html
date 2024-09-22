@@ -45,7 +45,7 @@
                         <th>Titulo</th>
                         <th>Texto</th>
                         <th>Status</th>
-                        <th class="text-center">Acção</th>
+                        <th>Acção</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,14 +59,15 @@
                         </td>
                         <td>{{categoria.texto}}</td>
                         
-                        <td class="text-center">
+                        <td>{{categoria.status}}</td>
+                        <td class="text-center>
                             {% if categoria.status == 1 %}
                             <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Activo"></i>
                             {% else %}
                             <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inactivo"></i>
                             {% endif %}
                         </td>              
-                        <td class="text-center">
+                        <td>
                              <a href="{{ url('admin/categorias/editar/'~categoria.id) }}">Editar</a>
                              <a href="{{ url('admin/categorias/deletar/'~categoria.id) }}">Deletar</a>
                         </td>

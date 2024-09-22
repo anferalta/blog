@@ -17,6 +17,13 @@ class PostModelo extends Modelo
     {
         parent::__construct('posts');
     }
+    
+    public function categoria(): ?CategoriaModelo
+    {
+        if ($this->categoria_id){
+            return (new CategoriaModelo())->buscaPorId($this->categoria_id);
+        }
+    }
 
 }
 
