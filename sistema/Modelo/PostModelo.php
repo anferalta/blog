@@ -24,6 +24,20 @@ class PostModelo extends Modelo
             return (new CategoriaModelo())->buscaPorId($this->categoria_id);
         }
     }
+    
+    public function usuario(): ?UsuarioModelo
+    {
+        if ($this->categoria_id){
+            return (new UsuarioModelo())->buscaPorId($this->usuario_id);
+        }
+        return null;
+    }
+    
+    public function salvar(): bool
+    {
+        $this->slug();
+        return parent::salvar();
+    }
 
 }
 

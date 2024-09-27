@@ -109,21 +109,13 @@ class AdminCategorias extends AdminControlador
         
     public function deletar(int $id): void
     {
-        if (is_int($id)){
+        if(is_int($id)){
             $categoria = (new CategoriaModelo())->buscaPorId($id);
-                        
             if (!$categoria){
                 $this->mensagem->alerta('A categoria que voçê está tentando deletar não existe!')->flash();
-                Helpers::redirecionar('admin/categorias/listar');
-            }
-            
-            elseif ($categoria->posts($categoria->id)) {
-                $this->mensagem->alerta("A categoria {$categoria->titulo} tem posts cadastrados, delete ou altere os posts antes de deletar")->flash();
-                Helpers::redirecionar('admin/categorias/listar');    
-                }
-            
-             else {
-                  if ($categoria->deletar()) {
+                Helpers::redirecionar('admin/categorias/listar'); 
+            } else {
+                if($categoria->deletar()){
                     $this->mensagem->sucesso('Categoria deletada com sucesso!')->flash();
                     Helpers::redirecionar('admin/categorias/listar'); 
                 } else {

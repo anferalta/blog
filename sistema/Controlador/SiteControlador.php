@@ -37,15 +37,21 @@ class SiteControlador extends Controlador
         }
     }
 
-    public function post(int $id): void
+    public function post(string $slug, int $id): void 
+
     {
         $post = (new PostModelo())->buscaPorId($id);
         if (!$post) {
             Helpers::redirecionar('404');
         }
+        
+        $post->visitas += 1;
+        $post->ultima_visita_em = date("Y-m-d H:i:s");
+        $post->salvar();
 
         echo $this->template->renderizar('post.html', [
-            'post' => $post
+            'post' => $post,
+            'categorias' => $this->categorias(),
         ]);
     }
 
@@ -54,12 +60,20 @@ class SiteControlador extends Controlador
         return (new CategoriaModelo())->busca("status = 1")->resultado(true);
     }
 
-    public function categoria(int $id): void
+    public function categoria(string $slug): void
     {
-        $posts = (new CategoriaModelo())->posts($id);
-
+        $categoria = (new CategoriaModelo())->buscaPorSlug($slug);
+        if (!$categoria){
+            Helpers::redirecionar('404');
+        }
+        
+        $categoria->visitas += 1;
+        $categoria->ultima_visita_em = date('Y-m-d H:i:s');
+        $categoria->salvar();
+        
         echo $this->template->renderizar('categoria.html', [
-            'posts' => $posts
+            'posts' => (new CategoriaModelo())->posts($categoria->id),
+            'categorias' => $this->categorias(),
         ]);
     }
 

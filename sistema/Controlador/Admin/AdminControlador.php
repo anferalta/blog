@@ -16,7 +16,6 @@ class AdminControlador extends Controlador
 {
     protected $usuario;
 
-
     public function __construct()
     {
         parent::__construct('templates/admin/views');

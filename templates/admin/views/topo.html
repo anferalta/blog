@@ -1,26 +1,65 @@
-<header class="bg-white">
-    <h2>
-        <label for="menu">
-            <i class="fa-solid fa-bars-staggered" tooltip="tooltip" title="MENU"></i>
-        </label>
-    </h2>
+<header class="py-3 mb-3 border-bottom">
     
-    <div class="btn-group mb-2">
-        <button type="button" class="btn-bg-white dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" area-expanded="false">
-            <i class="fa-solid fa-user me-2"></i> {{usuario().nome}}
-        </button>
-        <ul class="dropdown-menu dropdown-menu-lg-end">
-            <li>
-                <a class="dropdown-item" href="#" tooltip="tooltip" title="Perfil">
-                    Perfil
-                </a>               
-            </li>
-            <li>
-                <a class="dropdown-item text-danger" href="{{url('admin/sair')}}" tooltip="tooltip" title="Sair do Sistema">
-                    Sair
-                </a>
-            </li>
-        </ul>
+    <div class="card-header bg-white border-0">
+        <h5 class="mb-3">Bem vindo ao Painel Administrativo <small class="saudacao text-muted"> - {{saudacao()|upper}}, {{usuario().nome}}. Seu último login foi em {{usuario().ultimo_login |date('d-m-Y')}} às {{usuario().ultimo_login |date('H:i')}}</small></h5>
     </div>
+    <a href="{{url('admin/dashboard')}}">
+        Dashboard
+    </a>
     
-</header>
+    {{ flash() }}
+    
+    <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a>
+          
+        <ul class="dropdown-menu text-small shadow">
+          <li><a class="dropdown-item active" href="#" aria-current="page">Administração</a></li>
+          <li>
+              {%if usuario().level == 3%}
+            <a href="{{url('admin/posts/listar')}}" tooltip="tooltip" title="Administração de Posts">
+                <i class="fa-solid fa-file-pen"></i>
+                <span>Posts</span>
+            </a>
+            {% endif %}
+          </li>
+          <li>
+              {%if usuario().level == 3%}
+            <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+                <span>Categorias</span>
+            </a>
+            {%endif%}
+          </li>
+          
+          <li>
+              {%if usuario().level == 3%}
+            <a href="{{url('admin/usuarios/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+                <span>Usuarios</span>
+            </a>
+            {%endif%}
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <form class="w-100 me-3" role="search">
+          
+        </form>
+
+        <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+           
+            <li><a class="dropdown-item text-danger" href="{{url('admin/sair')}}" tooltip="tooltip" title="Sair do Sistema">
+                    Sair
+                </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>

@@ -33,50 +33,66 @@ class AdminPosts extends AdminControlador
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-            $post = new PostModelo();
-            $categorias = new CategoriaModelo();
             
-            $post->titulo = $dados['titulo'];
-            $post->categoria_id = $dados['categoria_id'];
-            $post->texto = $dados['texto'];
-            $post->status = $dados['status'];
+            if ($this->validarDados($dados)){
+                $post = new PostModelo();
+                 
+                $post->usuario_id = $this->usuario->id;
+                $post->categoria_id = $dados['categoria_id'];
+                $post->slug = Helpers::slug($dados['titulo']);
+                $post->titulo = $dados['titulo'];
+                $post->texto = $dados['texto'];
+                $post->status = $dados['status'];
             
-            if($post->salvar()){
-                $this->mensagem->sucesso('Post cadastrado com sucesso')->flash();
-                Helpers::redirecionar('admin/posts/listar');
-            }
+                if($post->salvar()){
+                    $this->mensagem->sucesso('Post cadastrado com sucesso')->flash();
+                    Helpers::redirecionar('admin/posts/listar');
+                }else {
+                        $this->mensagem->erro($post->erro())->flash();
+                        Helpers::redirecionar('admin/posts/cadastrar'); 
+                        }
         }
+            
+    }
         
         echo $this->template->renderizar('posts/formulario.html', [
             'categorias'=> (new CategoriaModelo())->busca()]);
                 
     }
     
+       
     public function editar(int $id): void
     {
         $post = (new PostModelo())->buscaPorId($id);
         
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)){
-           
-            $post = (new PostModelo())->buscaPorId($id);
-            
-            $post->categoria_id = $dados['categoria_id'];
-            $post->titulo = $dados['titulo'];
-            $post->texto = $dados['texto'];
-            $post->status = $dados['status'];
-            
+            if ($this->validarDados($dados)) {
+                $post = (new PostModelo())->buscaPorId($id);
+                
+                $post->usuario_id = $this->usuario->id;
+                $post->categoria_id = $dados['categoria_id'];
+                $post->slug = Helpers::slug($dados['titulo']);
+                $post->titulo = $dados['titulo'];
+                $post->texto = $dados['texto'];
+                $post->status = $dados['status'];
+                $post->atualizado_em = date('Y-m-d H:i:s');
+                            
             if($post->salvar()){
                 $this->mensagem->sucesso('Post atualizado com sucesso')->flash();
                 Helpers::redirecionar('admin/posts/listar');
+            }else {
+                    $this->mensagem->erro($post->erro())->flash();
+                    Helpers::redirecionar('admin/posts/cadastrar');
+                    }
             }
         }
         
         echo $this->template->renderizar('posts/formulario.html', [
-            'post' => $post,
-            'categorias'=> (new CategoriaModelo())->busca()]);
+            'post'=> $post
+        ]);
     }
-        
+    
     public function deletar(int $id): void
     {
         if(is_int($id)){
@@ -94,6 +110,29 @@ class AdminPosts extends AdminControlador
                 }
             }
         }
+    }
+    
+     public function validarDados(array $dados): bool
+    {
+        
+        if (empty($dados['titulo'])){
+            if (!Helpers::validarSenha($dados['titulo'])){
+                $this->mensagem->alerta('Informe titulo do post!')->flash();
+                
+                return false;
+            }
+        }
+        
+        if (empty($dados['texto'])){
+            if (!Helpers::validarSenha($dados['texto'])){
+                $this->mensagem->alerta('Informe o texto do post!')->flash();
+                
+                return false;
+            }
+        }
+        
+        return true;
+        
     }
     
 }

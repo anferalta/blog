@@ -2,8 +2,19 @@
 {% block conteudo %}
 
 <div class="container my-5">
-    <h1>{{post.titulo}}</h1>
-    <p>{{post.texto}}</p>    
+    <div class="row">
+        <div class="col-lg-9 col-md-12">
+            <h1>{{post.titulo}}</h1>
+    
+            <div class="my-3">
+                <small class="text-muted">Por {{post.usuario.nome}}, {{post.cadastrado_em|date("d-m-Y")}} às {{post.cadastrado_em|date("H:i")}} em {{post.categoria.titulo}}</small>
+            </div>
+            
+            <div class="texto">
+                <p>{{post.texto}}</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

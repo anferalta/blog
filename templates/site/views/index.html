@@ -6,11 +6,18 @@
     <div class="row">
 
         {% for post in posts %}
-        <div class="col-md-3">
-            <div class="card mb-4">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
                 <div class="card-body">
-                    <a href="{{url('post/'~post.id)}}">
-                        <h5 class="card-title">{{post.titulo}}</h5>
+                    <a href="{{url('post/'~post.slug~'/'~post.id)}}" tooltip ="tooltip" title="{{post.titulo}}">
+                        
+                        <h4 class="card-title">{{post.titulo}}</h4>
+                        
+                        <div class="d-flex justify- content-between my-3 text-muted">
+                            <small>{{post.categoria.titulo |upper}}</small>
+                            <small>{{contarTempo(post.cadastrado_em)}}</small>
+                        </div>
+                        
                         <p class="card-text">{{resumirTexto(post.texto, 50)}}</p>
                     </a>
                 </div>

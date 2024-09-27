@@ -182,6 +182,13 @@ abstract class Modelo
         
         return $busca->resultado();
     }
+    
+    public function buscaPorSlug(string $slug)
+    {
+        $busca = $this->busca("slug = :s","s={$slug}");
+        
+        return $busca->resultado();
+    }
 
     public function apagar(string $termos)
     {
@@ -211,7 +218,7 @@ abstract class Modelo
     public function total(): int
         {
             $stmt = conexao::getInstancia()->prepare($this->query);
-            $stmt->execute();
+            $stmt->execute($this->parametros);
 
             return $stmt->rowCount();
         }
@@ -239,5 +246,18 @@ abstract class Modelo
         }
         $this->dados = $this->buscaPorId($id)->dados();
         return true;
+    }
+    
+    private function ultimoId(): int
+    {
+        return Conexao::getInstancia()->query("SELECT MAX(id) as maximo FROM {$this->tabela}")->fetch()->maximo +1;
+    }
+    
+    protected function slug()
+    {
+        $checarSlug = $this->busca("slug = :s AND id != :id","s={$this->slug}&id={$this->id}");
+        if ($checarSlug->total()){
+            $this->slug = "{$this->slug}-{$this->ultimoId()}";
+        }
     }
 }
