@@ -4,62 +4,77 @@
         <h5 class="mb-3">Bem vindo ao Painel Administrativo <small class="saudacao text-muted"> - {{saudacao()|upper}}, {{usuario().nome}}. Seu último login foi em {{usuario().ultimo_login |date('d-m-Y')}} às {{usuario().ultimo_login |date('H:i')}}</small></h5>
     </div>
     <a href="{{url('admin/dashboard')}}">
-        Dashboard
+        
+         <option>Clique na seta abaixo para ter acesso ao menu de seleção</option>
     </a>
     
     {{ flash() }}
     
     <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        </a>
-          
-        <ul class="dropdown-menu text-small shadow">
-          <li><a class="dropdown-item active" href="#" aria-current="page">Administração</a></li>
-          <li>
-              {%if usuario().level == 3%}
-            <a href="{{url('admin/posts/listar')}}" tooltip="tooltip" title="Administração de Posts">
-                <i class="fa-solid fa-file-pen"></i>
-                <span>Posts</span>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
             </a>
-            {% endif %}
-          </li>
-          <li>
-              {%if usuario().level == 3%}
-            <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
-                <span>Categorias</span>
-            </a>
-            {%endif%}
-          </li>
-          
-          <li>
-              {%if usuario().level == 3%}
-            <a href="{{url('admin/usuarios/listar')}}" tooltip="tooltip" title="Administração de Categorias">
-                <span>Usuarios</span>
-            </a>
-            {%endif%}
-          </li>
-          
-        </ul>
-      </div>
 
-      <div class="d-flex align-items-center">
-        <form class="w-100 me-3" role="search">
-          
-        </form>
-
-        <div class="flex-shrink-0 dropdown">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small shadow">
-           
-            <li><a class="dropdown-item text-danger" href="{{url('admin/sair')}}" tooltip="tooltip" title="Sair do Sistema">
-                    Sair
-                </a></li>
-          </ul>
+            <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item active" href="" aria-current="page">Administração</a></li>
+                    <li>
+                        {%if usuario().level == 3%}
+                            <a href="{{url('admin/posts/listar')}}" tooltip="tooltip" title="Administração de Posts">
+                                <i class="fa-solid fa-file-pen"></i>
+                                <span>Posts</span>
+                            </a>
+                        <li>
+                            {%if usuario().level == 3%}
+                                <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+                                <span>Categorias</span>
+                                </a>
+                            {%endif%}
+                        </li>    
+                        <li>
+                            {%if usuario().level == 3%}
+                                <a href="{{url('admin/usuarios/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+                                <span>Usuarios</span>
+                                </a>
+                            {%endif%}
+                        </li>        
+                
+                        {% elseif usuario().level == 1 %}
+                            <li>
+                                {%if usuario().level == 1%}
+                                    <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+                                    <span>Categorias</span>
+                                    </a>
+                                {%endif%}
+                            </li>
+                        {% else %}
+                            <a rel="" class="btn btn-outline-light me-2" tooltip="tooltip" title="Faça login">
+                                Entrar
+                            </a>
+                            <a rel="" class="btn btn-warning" tooltip="tooltip" title="Junte-se a nós">
+                                Cadastra-se
+                            </a>
+                        {% endif %}
+                    </li>
+            </ul>
         </div>
-      </div>
+    
+        <div class="d-flex align-items-center">
+            <form class="w-100 me-3" role="search">
+          
+            </form>
+
+            <div class="flex-shrink-0 dropdown">
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item text-danger" href="{{url('admin/sair')}}" tooltip="tooltip" title="Sair do Sistema">
+                        Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
   </header>

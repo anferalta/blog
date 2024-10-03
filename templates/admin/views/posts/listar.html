@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{{url('admin/dashboard')}}">
-                Home
+                Lista de 
             </a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
@@ -18,13 +18,28 @@
 
 <div class="card-border-0 shadow-sm">
     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-        Total de posts {{total.total}} - Activos {{total.activo}} - Inactivos {{total.inactivo}}
-        <a href="{{url('admin/posts/cadastrar')}}" class="btn btn-primary">Cadastrar</a>
+        <div
+            <span class="badge rounded text-bg-dark bg-opacity-25">
+               <span class="text-dark bg-opacity-100">{{total.posts}} Posts</span>
+                <span class="badge text-bg-success bg-opacity-100">{{total.postsAtivo}}</span>
+                <span class="badge text-bg-danger bg-opacity-100">{{total.postsInativo}}
+            </span>
+                        
+            <span class="badge rounded text-bg-dark bg-opacity-25">
+               <span class="text-dark bg-opacity-100">{{total.posts}} posts</span>
+              <span class="badge text-bg-success bg-opacity-100">{{total.postsAtivo}}</span>
+             <span class="badge text-bg-danger bg-opacity-100">{{total.adminpostsInativo}}
+            </span>
+        </div>
+        
+        <a href="{{url('admin/posts/cadastrar')}}" class="btn btn-dark" tooltip="tooltip" title="Cadastrar Posts">
+            Cadastrar
+        </a>
     </div>
     
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -52,7 +67,6 @@
                         </td>
                     </tr>
                     {% endfor %}
-                    
                 </tbody>
             </table>
         </div>

@@ -31,8 +31,10 @@ class SiteControlador extends Controlador
         if (isset($busca)) {
             $posts = (new PostModelo())->busca("status = 1 AND titulo LIKE '%{$busca}%'")->resultado(true);
             
-            foreach ($posts as $spost) {
+            if ($posts){
+                foreach ($posts as $spost) {
                 echo "<li class='list-group-item fw-bold'><a href=".Helpers::url('post/').$spost->id." class='text-white'>$post->titulo</a></li>";
+                }
             }
         }
     }
@@ -45,9 +47,7 @@ class SiteControlador extends Controlador
             Helpers::redirecionar('404');
         }
         
-        $post->visitas += 1;
-        $post->ultima_visita_em = date("Y-m-d H:i:s");
-        $post->salvar();
+        $post->salvarVisitas;
 
         echo $this->template->renderizar('post.html', [
             'post' => $post,
@@ -67,9 +67,7 @@ class SiteControlador extends Controlador
             Helpers::redirecionar('404');
         }
         
-        $categoria->visitas += 1;
-        $categoria->ultima_visita_em = date('Y-m-d H:i:s');
-        $categoria->salvar();
+        $categoria->salvarVisitas();
         
         echo $this->template->renderizar('categoria.html', [
             'posts' => (new CategoriaModelo())->posts($categoria->id),

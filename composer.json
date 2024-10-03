@@ -22,6 +22,7 @@
         "pecee/simple-router": "dev-master",
         "twig/twig": "^3.0",
         "twbs/bootstrap-icons": "*",
-        "symfony/asset": "7.2.x-dev"
+        "symfony/asset": "7.2.x-dev",
+        "digitalnature/php-ref": "dev-master"
     }
 }

@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cda0590c5be1f41c111478bd2bf1e9c9",
+    "content-hash": "22ae28f384f752743d71b53cb33966f8",
     "packages": [
+        {
+            "name": "digitalnature/php-ref",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/digitalnature/php-ref.git",
+                "reference": "2381f04d7ebcbce1072e86b98a0ccbad191f3290"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/digitalnature/php-ref/zipball/2381f04d7ebcbce1072e86b98a0ccbad191f3290",
+                "reference": "2381f04d7ebcbce1072e86b98a0ccbad191f3290",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ref.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A nicer print_r/var_dump alternative for PHP 5.3+",
+            "homepage": "https://github.com/digitalnature/php-ref",
+            "keywords": [
+                "debug",
+                "var_dump"
+            ],
+            "support": {
+                "issues": "https://github.com/digitalnature/php-ref/issues",
+                "source": "https://github.com/digitalnature/php-ref/tree/v1.3"
+            },
+            "time": "2020-01-28T21:41:16+00:00"
+        },
         {
             "name": "pecee/simple-router",
             "version": "dev-master",
@@ -76,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
-                "reference": "b45a5d50f2796377b2dcce3a32755ee08784c108"
+                "reference": "aba39e966ad4f80130427fb047d228dddf592f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset/zipball/b45a5d50f2796377b2dcce3a32755ee08784c108",
-                "reference": "b45a5d50f2796377b2dcce3a32755ee08784c108",
+                "url": "https://api.github.com/repos/symfony/asset/zipball/aba39e966ad4f80130427fb047d228dddf592f60",
+                "reference": "aba39e966ad4f80130427fb047d228dddf592f60",
                 "shasum": ""
             },
             "require": {
@@ -137,7 +177,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-23T12:28:30+00:00"
+            "time": "2024-09-25T14:21:43+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -451,12 +491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/icons.git",
-                "reference": "2357f3f11ba71970d03713e8c16b312a338476d1"
+                "reference": "8a46937c005ca829471d3198b35bd3735c23fde5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/icons/zipball/2357f3f11ba71970d03713e8c16b312a338476d1",
-                "reference": "2357f3f11ba71970d03713e8c16b312a338476d1",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/8a46937c005ca829471d3198b35bd3735c23fde5",
+                "reference": "8a46937c005ca829471d3198b35bd3735c23fde5",
                 "shasum": ""
             },
             "default-branch": true,
@@ -483,7 +523,7 @@
                 "issues": "https://github.com/twbs/icons/issues",
                 "source": "https://github.com/twbs/icons/tree/main"
             },
-            "time": "2024-09-02T15:18:30+00:00"
+            "time": "2024-10-01T14:41:09+00:00"
         },
         {
             "name": "twig/twig",
@@ -491,12 +531,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "1a20e961742de10bca43d4d02b7f92b005e3e2a2"
+                "reference": "7d74d28e2e448513dd7028832c1c5c42f9971c82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1a20e961742de10bca43d4d02b7f92b005e3e2a2",
-                "reference": "1a20e961742de10bca43d4d02b7f92b005e3e2a2",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7d74d28e2e448513dd7028832c1c5c42f9971c82",
+                "reference": "7d74d28e2e448513dd7028832c1c5c42f9971c82",
                 "shasum": ""
             },
             "require": {
@@ -563,14 +603,16 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-11T08:45:54+00:00"
+            "time": "2024-10-01T18:37:57+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "pecee/simple-router": 20
+        "pecee/simple-router": 20,
+        "symfony/asset": 20,
+        "digitalnature/php-ref": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

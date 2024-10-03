@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{{url('admin/dashboard')}}">
-                Dashboard
+                Lista de
             </a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
@@ -20,15 +20,15 @@
     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
         <div
             <span class="badge rounded text-bg-dark bg-opacity-25">
-                <span class="text-dark bg-opacity-100">{{total.usuarios}} usuário</span>
-                <span class="badge text-bg-success bg-opacity-100">{{total.usuariosAtivo}}</span>
-                <span class="badge text-bg-danger bg-opacity-100">{{total.usuariosInativo}}
+                <span class="text-dark bg-opacity-50">{{total.usuarios}} usuarios</span>
+                <span class="badge text-bg-success bg-opacity-50">{{total.usuariosAtivo}}</span>
+                <span class="badge text-bg-danger bg-opacity-50">{{total.usuariosInativo}}
             </span>
                         
             <span class="badge rounded text-bg-dark bg-opacity-25">
-                <span class="text-dark bg-opacity-100">{{total.admin}} admin</span>
-                <span class="badge text-bg-success bg-opacity-100">{{total.adminAtivo}}</span>
-                <span class="badge text-bg-danger bg-opacity-100">{{total.adminInativo}}
+                <span class="text-dark bg-opacity-50">{{total.admin}} admin</span>
+                <span class="badge text-bg-success bg-opacity-50">{{total.adminAtivo}}</span>
+                <span class="badge text-bg-danger bg-opacity-50">{{total.adminInativo}}
             </span>
         </div>
         <a href="{{url('admin/usuarios/cadastrar')}}" class="btn btn-dark" tooltip="tooltip" title="Cadastrar Usuário">
@@ -45,6 +45,7 @@
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th>Level</th>
+                        <th>Status</th>
                         <th>Acção</th>
                     </tr>
                 </thead>
@@ -52,13 +53,10 @@
                     {% for usuario in usuarios %}
                     <tr>
                         <th>{{usuario.id}}</th>
-                        <td>
-                            <a href="{{ url('admin/usuarios/editar/'~usuario.id) }}" tooltip="tooltip" title="Editar">
-                                {{usuario.nome}}
-                            </a>
-                        </td>
+                        <th>{{usuario.nome}}</th>
                         <td>{{usuario.email}}</td>
-                        <td class="texte-center">
+                    
+                        <td>
                             {% if usuario.level == 3 %}
                             <div class="text-danger fw-bold">Admin</div>
                             {% else %}
@@ -67,11 +65,12 @@
                         </td>
                         <td>
                             {% if usuario.status == 1 %}
-                            <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
+                                Activo
                             {% else %}
-                            <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inativo"></i>
+                                Inactivo
                             {% endif %}
-                        </td>              
+                        </td>  
+                        
                         <td>
                              <a href="{{ url('admin/usuarios/editar/'~usuario.id) }}">Editar</a>
                              <a href="{{ url('admin/usuarios/deletar/'~usuario.id) }}">Deletar</a>

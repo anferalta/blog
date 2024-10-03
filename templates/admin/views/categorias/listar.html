@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{{url('admin/dashboard')}}">
-                Dashboard
+                Lista de
             </a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
@@ -19,13 +19,13 @@
 <div class="card-border-0 shadow-sm">
     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
         <div
-            <span class="badge rounded text-bg-dark bg-opacity-25">
+            <span class="badge rounded text-bg-dark bg-opacity-50">
                 <span class="text-dark bg-opacity-50">{{total.categorias}} categorias</span>
                 <span class="badge text-bg-success bg-opacity-50">{{total.categoriasAtivo}}</span>
                 <span class="badge text-bg-danger bg-opacity-50">{{total.categoriasInativo}}
             </span>
                         
-            <span class="badge rounded text-bg-dark bg-opacity-25">
+            <span class="badge rounded text-bg-dark bg-opacity-50">
                 <span class="text-dark bg-opacity-50">{{total.admin}} admin</span>
                 <span class="badge text-bg-success bg-opacity-50">{{total.adminAtivo}}</span>
                 <span class="badge text-bg-danger bg-opacity-50">{{total.adminInativo}}
@@ -45,35 +45,30 @@
                         <th>Titulo</th>
                         <th>Texto</th>
                         <th>Status</th>
-                        <th>Acção</th>
+                        <th>Accão</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for categoria in categorias %}
                     <tr>
                         <th>{{categoria.id}}</th>
-                        <td>
-                            <a href="{{ url('admin/categorias/editar/'~categoria.id) }}" tooltip="tooltip" title="Editar">
-                                {{categoria.titulo}}
-                            </a>
-                        </td>
+                        <th>{{categoria.titulo}}</th>
                         <td>{{categoria.texto}}</td>
                         
-                        <td>{{categoria.status}}</td>
-                        <td class="text-center>
+                        <td>
                             {% if categoria.status == 1 %}
-                            <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Activo"></i>
+                                Activo
                             {% else %}
-                            <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inactivo"></i>
+                                Inactivo
                             {% endif %}
-                        </td>              
+                        </td>   
+                        
                         <td>
                              <a href="{{ url('admin/categorias/editar/'~categoria.id) }}">Editar</a>
                              <a href="{{ url('admin/categorias/deletar/'~categoria.id) }}">Deletar</a>
                         </td>
                     </tr>
                     {% endfor %}
-                    
                 </tbody>
             </table>
         </div>

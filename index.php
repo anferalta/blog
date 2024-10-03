@@ -11,8 +11,17 @@
         //Arquivo index responsavel pela inicialização do sistema
 
         require 'vendor/autoload.php';
-        require 'rotas.php';     
-                
-        ?>	
+        //require 'rotas.php'; 
+        if (!empty($arquivo = $_FILES)){
+            r($arquivo);
+        }
+         
+        echo '<hr>';
+        ?>
+        
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="arquivo">
+            <button>Enviar</button>
+        </form>
 
 </html>
