@@ -12,8 +12,16 @@
 
         require 'vendor/autoload.php';
         //require 'rotas.php'; 
+        use sistema\Biblioteca\Upload;
+        
+        $upload = new Upload('upload');
+        
+        var_dump($upload);
+        
         if (!empty($arquivo = $_FILES)){
-            r($arquivo);
+            $arquivo = $_FILES['arquivo'];
+            $upload->arquivo($arquivo, 'imagens');
+            r($upload);
         }
          
         echo '<hr>';
