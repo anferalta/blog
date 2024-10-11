@@ -20,7 +20,12 @@
         
         if (!empty($arquivo = $_FILES)){
             $arquivo = $_FILES['arquivo'];
-            $upload->arquivo($arquivo, 'imagens');
+            $upload->arquivo($arquivo, 'novo nome', 'imagens');
+            if ($upload->getResultado()){
+                echo 'Upload feito com sucesso do arquivo '.$upload->getResultado();
+            } else {
+                echo $upload->getErro();
+            }
             r($upload);
         }
          

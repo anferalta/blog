@@ -13,7 +13,18 @@ class Upload
     private $arquivo;
     private $nome;
     private $subDirectorio;
-
+    public $resultado;
+    public $erro;
+    
+    public function getResultado(): ?string
+    {
+        return $this->resultado;
+    }
+    
+    public function getErro(): ?string
+    {
+        return $this->erro;
+    }
 
     public function __construct(string $directorio = null)
     {
@@ -24,13 +35,16 @@ class Upload
         }
     }
     
-    public function arquivo(array $arquivo, string $subDirectorio = null)
+    public function arquivo(array $arquivo, string $nome = null, string $subDirectorio = null)
     {
         $this->arquivo = $arquivo;
+        
+        $this->nome = $nome  ?? pathinfo($this->arquivo['name'], PATHINFO_FILENAME);
         
         $this->subDirectorio = $subDirectorio ?? 'arquivos';
         
         $this->criarSubDirectorio();
+        $this->renomearArquivo();
         $this->moverArquivo();
     }
     
@@ -41,12 +55,22 @@ class Upload
         }
     }
     
+    public function renomearArquivo(): void
+    {
+        echo $arquivo = $this->nome.strrchr($this->arquivo['name'], '.');
+        if (file_exists($this->directorio.DIRECTORY_SEPARATOR.$this->subDirectorio. DIRECTORY_SEPARATOR.$arquivo)){
+            $arquivo = $this->nome.'-'. uniqid().strrchr($this->arquivo['name'], '.');
+        }
+        $this->nome = $arquivo;
+    }
+    
     public function moverArquivo(): void
     {
-        if (move_uploaded_file($this->arquivo['tmp_name'], $this->directorio. DIRECTORY_SEPARATOR.$this->subDirectorio.DIRECTORY_SEPARATOR.$this->arquivo['name'])){
-            echo $this->arquivo['name']. ', foi movido com sucesso';
+        if (move_uploaded_file($this->arquivo['tmp_name'], $this->directorio. DIRECTORY_SEPARATOR.$this->subDirectorio.DIRECTORY_SEPARATOR.$this->nome)){
+            $this->resultado = $this->nome;
         } else {
-            echo 'Erro ao enviar arquivo';
+            $this->resultado = null;
+            $this->erro = 'Erro ao enviar arquivo';
         }
     }
 }
