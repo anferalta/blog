@@ -23,6 +23,7 @@
         "twig/twig": "^3.0",
         "twbs/bootstrap-icons": "*",
         "symfony/asset": "7.2.x-dev",
-        "digitalnature/php-ref": "dev-master"
+        "digitalnature/php-ref": "dev-master",
+        "verot/class.upload.php": "dev-master"
     }
 }
