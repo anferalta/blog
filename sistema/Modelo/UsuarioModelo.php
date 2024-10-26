@@ -31,13 +31,13 @@ class UsuarioModelo extends Modelo
         $usuario = (new UsuarioModelo())->buscaPorEmail($dados['email']);
         
         if (!$usuario){
-            $this->mensagem->alerta("Os dados informados para o login estão incorrectos!")->flash();
+            $this->mensagem->erro("Os dados informados para o login estão incorrectos!")->flash();
             return false;
         }
         
         if (!Helpers::verificarSenha($dados['senha'], $usuario->senha)){
             $this->mensagem->alerta("Os dados informados para o login estão incorrectos!")->flash();
-            return false;
+           return false;
         }
         
         if ($usuario->status != 1){
@@ -53,16 +53,19 @@ class UsuarioModelo extends Modelo
         $usuario->ultimo_login = date('Y-m-d H:i:s');
         $usuario->salvar();
         
+        $usuario->saida_sistema = date('Y-m-d H:i:s');
+        $usuario->salvar();
+        
         (new Sessao())->criar('usuarioId', $usuario->id);
         
         $this->mensagem->sucesso("{$usuario->nome}, seja bem vindo ao painel de controle")->flash();
         return true;
     }
-    
+
     public function salvar()
-    {
-        if ($this->busca("email = :e AND id != :id","e={$this->email}&id={$this->id}")->resultado()) {
-                $this->mensagem->alerta("O e-mail ".$this->dados->email." já está cadastrado");
+    {   
+        if ($this->busca("email = :e AND id != :id","e={$this->email}&id={$this->id}")->resultado()) {   
+            $this->mensagem->alerta("O e-mail ".$this->dados->email." já está cadastrado");
                 return false;
             }
             

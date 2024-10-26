@@ -2,6 +2,7 @@
 
 namespace sistema\biblioteca;
 
+
 /**
  * Retorna o resultado
  *@return string|null = Nome do arquivo
@@ -14,7 +15,7 @@ class Upload
     private ?string $nome;
     private ?string $subDirectorio;
     private ?int $tamanho;
-    private ?string $resultado;
+    private ?string $resultado = null;
     private ?string $erro;
     
     public function getResultado(): ?string
@@ -51,13 +52,18 @@ class Upload
         $extensoesValidas = [
             'pdf',
             'png',
-            'docx'
+            'docx',
+            'jpg',
+            'gif',
+            'txt'
         ];
         
         $tiposValidos = [
             'application/pdf',
             'text/plain',
-            'image/png'
+            'image/png',
+            'image/x-pnp',
+            'image/gif'
         ];
         
         if (!in_array($extensao, $extensoesValidas)){

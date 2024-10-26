@@ -27,7 +27,7 @@ class PostModelo extends Modelo
     
     public function usuario(): ?UsuarioModelo
     {
-        if ($this->categoria_id){
+        if ($this->usuario_id){
             return (new UsuarioModelo())->buscaPorId($this->usuario_id);
         }
         return null;

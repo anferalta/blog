@@ -5,6 +5,7 @@ namespace sistema\Controlador\Admin;
 use sistema\Modelo\PostModelo;
 use sistema\Modelo\CategoriaModelo;
 use sistema\Nucleo\Helpers;
+use sistema\biblioteca\Upload;
 
 /**
  * Description of AdminPosts
@@ -14,6 +15,9 @@ use sistema\Nucleo\Helpers;
 
 class AdminPosts extends AdminControlador
 {
+    private string $capa;
+
+
     public function listar(): void
     {
         $post = new PostModelo();
@@ -43,6 +47,7 @@ class AdminPosts extends AdminControlador
                 $post->titulo = $dados['titulo'];
                 $post->texto = $dados['texto'];
                 $post->status = $dados['status'];
+                $post->capa = $this->capa;
             
                 if($post->salvar()){
                     $this->mensagem->sucesso('Post cadastrado com sucesso')->flash();
@@ -114,6 +119,15 @@ class AdminPosts extends AdminControlador
     
      public function validarDados(array $dados): bool
     {
+         if (!empty($_FILES['capa'])){
+             $upload = new Upload();
+             if ($upload->getResultado()){
+                 $this->capa = $upload->getResultado();
+             } else {
+                 $this->mensagem->alerta($upload->getErro())->flash();
+                 return false;
+             }
+         }
         
         if (empty($dados['titulo'])){
             if (!Helpers::validarSenha($dados['titulo'])){
