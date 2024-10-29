@@ -82,6 +82,13 @@ class AdminPosts extends AdminControlador
                 $post->texto = $dados['texto'];
                 $post->status = $dados['status'];
                 $post->atualizado_em = date('Y-m-d H:i:s');
+                
+                if (!empty($_FILES['capa'])){
+                    if ($post->capa && file_exists("uploads/imagens/{$post->capa}")){
+                        unlink("uploads/imagens/{$post->capa}");
+                    }
+                    $post->capa = $this->capa;
+                }
                             
             if($post->salvar()){
                 $this->mensagem->sucesso('Post atualizado com sucesso')->flash();
@@ -107,6 +114,11 @@ class AdminPosts extends AdminControlador
                 Helpers::redirecionar('admin/posts/listar'); 
             } else {
                 if($post->deletar()){
+                    
+                    if ($post->capa && file_exists("uploads/imagens/{$post->capa}")){
+                        unlink("uploads/imagens/{$post->capa}");
+                    }
+                    
                     $this->mensagem->sucesso('Post deletado com sucesso!')->flash();
                     Helpers::redirecionar('admin/posts/listar'); 
                 } else {
@@ -121,6 +133,7 @@ class AdminPosts extends AdminControlador
     {
          if (!empty($_FILES['capa'])){
              $upload = new Upload();
+             $upload->arquivo($_FILES['capa'], Helpers::slug($dados['titulo']), 'imagens');
              if ($upload->getResultado()){
                  $this->capa = $upload->getResultado();
              } else {

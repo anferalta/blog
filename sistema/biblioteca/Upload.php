@@ -54,6 +54,7 @@ class Upload
             'png',
             'docx',
             'jpg',
+            'jpeg',
             'gif',
             'txt'
         ];
@@ -62,6 +63,8 @@ class Upload
             'application/pdf',
             'text/plain',
             'image/png',
+            'image/jpg',
+            'image/jpeg',
             'image/x-pnp',
             'image/gif'
         ];
