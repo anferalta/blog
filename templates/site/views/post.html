@@ -10,8 +10,10 @@
                 <small class="text-muted">Por {{post.usuario.nome}}, {{post.cadastrado_em|date("d-m-Y")}} às {{post.cadastrado_em|date("H:i")}} em {{post.categoria.titulo}}</small>
             </div>
             
+            <img src="{{url('uploads/imagens/'~post.capa)}}" alt="{{post.titulo}}" title="{{post.titulo}}" class="capaGrande"/>
+            
             <div class="texto">
-                <p>{{post.texto}}</p>
+                <p>{{post.texto | raw}}</p>
             </div>
         </div>
     </div>

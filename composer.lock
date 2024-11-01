@@ -531,12 +531,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "494f010d29bf86e600fed21ce1d8477b66c475da"
+                "reference": "75751250cc8b6efd53495dfbdd50a4d424c75caa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/494f010d29bf86e600fed21ce1d8477b66c475da",
-                "reference": "494f010d29bf86e600fed21ce1d8477b66c475da",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/75751250cc8b6efd53495dfbdd50a4d424c75caa",
+                "reference": "75751250cc8b6efd53495dfbdd50a4d424c75caa",
                 "shasum": ""
             },
             "require": {
@@ -603,7 +603,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-25T14:01:04+00:00"
+            "time": "2024-10-30T12:17:12+00:00"
         },
         {
             "name": "verot/class.upload.php",

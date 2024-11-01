@@ -131,18 +131,8 @@ class AdminPosts extends AdminControlador
     
      public function validarDados(array $dados): bool
     {
-         if (!empty($_FILES['capa'])){
-             $upload = new Upload();
-             $upload->arquivo($_FILES['capa'], Helpers::slug($dados['titulo']), 'imagens');
-             if ($upload->getResultado()){
-                 $this->capa = $upload->getResultado();
-             } else {
-                 $this->mensagem->alerta($upload->getErro())->flash();
-                 return false;
-             }
-         }
-        
-        if (empty($dados['titulo'])){
+         
+         if (empty($dados['titulo'])){
             if (!Helpers::validarSenha($dados['titulo'])){
                 $this->mensagem->alerta('Informe titulo do post!')->flash();
                 
@@ -157,8 +147,19 @@ class AdminPosts extends AdminControlador
                 return false;
             }
         }
+                  
+         if (!empty($_FILES['capa'])){
+             $upload = new Upload();
+             $upload->arquivo($_FILES['capa'], Helpers::slug($dados['titulo']), 'imagens');
+             if ($upload->getResultado()){
+                 $this->capa = $upload->getResultado();
+             } else {
+                 $this->mensagem->alerta($upload->getErro())->flash();
+                 return false;
+             }
+         }
         
-        return true;
+         return true;
         
     }
     
