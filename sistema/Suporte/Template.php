@@ -69,6 +69,18 @@ class Template
                     new \Twig\TwigFunction('contarTempo', function (string $data) {
                                 return Helpers::contarTempo($data);
                     })
+            ),
+                            $this->twig->addFunction(
+                    new \Twig\TwigFunction('formatarNumero', function (int $numero) {
+                                return Helpers::formatarNumero($numero);
+                    })
+            ),
+                                $this->twig->addFunction(
+                    new \Twig\TwigFunction('tempoCarregamento', function () {
+                                
+                        $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+                        return number_format($time, 4);
+                    })
             )
       );
     }
