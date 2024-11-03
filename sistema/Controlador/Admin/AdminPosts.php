@@ -26,9 +26,9 @@ class AdminPosts extends AdminControlador
             'posts' => $post->busca()->ordem('status ASC, titulo ASC')->resultado(true),
         
             'total' => [
-                'total' => $post->total(),
-                'activo' => $post->busca('status = 1')->total(),
-                'inactivo' => $post->busca('status = 0')->total()
+                'total' => $post->busca(null, 'COUNT(id)','id')->total(),
+                'activo' => $post->busca('status = :s','s=1 COUNT(status)','status')->total(),
+                'inactivo' => $post->busca('status = :s','s=0 COUNT(status)','status')->total()
             ],
         ]);
     }

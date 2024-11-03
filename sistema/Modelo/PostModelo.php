@@ -15,7 +15,7 @@ class PostModelo extends Modelo
 
     public function __construct()
     {
-        parent::__construct('posts');
+        parent::__construct('post_fake');
     }
     
     public function categoria(): ?CategoriaModelo
