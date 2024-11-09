@@ -17,18 +17,63 @@ class AdminPosts extends AdminControlador
 {
     private string $capa;
 
-
+    public function datatable(): void
+    {
+        $datatable = $_REQUEST;
+        $datatable = filter_var_array($datatable, FILTER_SANITIZE_STRING);
+        
+        $limite = $datatable['length'];
+        $offset = $datatable['start'];
+        $busca = $datatable['search']['value'];
+        
+        $colunas = [
+          0 => 'id'  ,
+          1 => 'titulo'  
+        ];
+        
+        $ordem = " ".$colunas[$datatable['order'][0]['column']]." ";
+        $ordem .= " ".$datatable['order'][0]['dir']." ";
+        
+        $posts = new PostModelo();
+        
+        if (empty($busca)){
+            $posts->busca()->ordem($ordem)->limite($limite)->offset($offset);
+            $total = (new PostModelo())->busca(null, 'COUNT(id)', 'id')->total();
+        } else {
+            $posts->busca("id LIKE '%{$busca}%' OR titulo LIKE '%{$busca}%' ")->limite($limite)->offset($offset);
+            $total = $posts->total();
+        }
+        
+        $dados = [];
+        
+        foreach ($posts->resultado(true) as $post){
+            $dados[] = [
+                $post->id,
+                $post->titulo
+            ];
+        }
+        
+        $retorno = [
+          "draw" => $datatable['draw'],
+          "recordsTotal" => $total,
+          "recordsFiltered" => $total,
+          "data" => $dados
+        ];
+                       
+        echo json_encode($retorno);
+    }
+    
     public function listar(): void
     {
         $post = new PostModelo();
         
             echo $this->template->renderizar('posts/listar.html', [
-            'posts' => $post->busca()->ordem('status ASC, titulo ASC')->resultado(true),
+            //'posts' => $post->busca()->ordem('status ASC, titulo ASC')->resultado(true),
         
             'total' => [
-                'total' => $post->busca(null, 'COUNT(id)','id')->total(),
-                'activo' => $post->busca('status = :s','s=1 COUNT(status)','status')->total(),
-                'inactivo' => $post->busca('status = :s','s=0 COUNT(status)','status')->total()
+                'posts' => 0,
+                'postsAtivo' => 0,
+                'postsInactivo' => 0
             ],
         ]);
     }
