@@ -27,8 +27,11 @@ class AdminPosts extends AdminControlador
         $busca = $datatable['search']['value'];
         
         $colunas = [
-          0 => 'id'  ,
-          1 => 'titulo'  
+            0 => 'id',
+            2 => 'titulo',
+            3 => 'categoria_id',
+            4 => 'visitas',
+            5 => 'status'
         ];
         
         $ordem = " ".$colunas[$datatable['order'][0]['column']]." ";
@@ -43,23 +46,27 @@ class AdminPosts extends AdminControlador
             $posts->busca("id LIKE '%{$busca}%' OR titulo LIKE '%{$busca}%' ")->limite($limite)->offset($offset);
             $total = $posts->total();
         }
-        
+         
         $dados = [];
         
-        foreach ($posts->resultado(true) as $post){
+        foreach ($posts->resultado(true) as $post) {
             $dados[] = [
                 $post->id,
-                $post->titulo
-            ];
+                $post->capa,
+                $post->titulo,
+                $post->categoria()->titulo ?? '-----',
+                Helpers::formatarNumero($post->visitas),
+                $post->status
+              ];
         }
         
         $retorno = [
           "draw" => $datatable['draw'],
           "recordsTotal" => $total,
           "recordsFiltered" => $total,
-          "data" => $dados
+          "data" => $dados  
         ];
-                       
+        
         echo json_encode($retorno);
     }
     

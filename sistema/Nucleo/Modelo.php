@@ -81,7 +81,7 @@ abstract class Modelo
         return $this->dados->$nome ?? null;
     }
 
-    public function busca(string $termos = null, ?string $parametros = null, string $colunas = '*')
+    public function busca(string $termos = null, string $parametros = '', string $colunas = '*')
     {
         if ($termos) {
             $this->query = "SELECT {$colunas} FROM ".$this->tabela." WHERE {$termos} ";
