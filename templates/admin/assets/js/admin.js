@@ -16,8 +16,12 @@ $(document).ready(function() {
     
     $('#tabelaPosts').DataTable({
         ajax: {
-            url: url + 'admin/posts/datatable',
-            type: 'POST'
+            url: url + 'admin/post_fake/datatable',
+            type: 'POST',
+            error: function(xhr, resp, text){
+                alert('Sua busca não retornou nenhum resultado!');
+                //console.log(xhr, resp, text);
+            }
         },
         order: [[0, 'desc']],
         processing: true,

@@ -35,7 +35,7 @@ define('URL_DESENVOLVIMENTO', 'http://localhost/blog');
         define('DB_USUARIO', 'anferalta');
         define('DB_SENHA', 'T0n!a1me');
         
-        define('URL_SITE', '/');
-        define('URL_ADMIN', '/admin/');
+        define('URL_SITE', 'projecto_html/');
+        define('URL_ADMIN', 'projecto_html/admin/');
     }
 

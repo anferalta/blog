@@ -20,7 +20,7 @@ class AdminPosts extends AdminControlador
     public function datatable(): void
     {
         $datatable = $_REQUEST;
-        $datatable = filter_var_array($datatable, FILTER_SANITIZE_STRING);
+        $datatable = filter_var_array($datatable, FILTER_SANITIZE_SPECIAL_CHARS);
         
         $limite = $datatable['length'];
         $offset = $datatable['start'];
