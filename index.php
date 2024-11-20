@@ -18,7 +18,7 @@
         try{
             
             $email = new Email();
-            $email->criar('Assunto do Email', 'Conteudo do email <b>negrito</b> ', 'tony.almeida@anferalta.com', 'Tóny Almeida', 'tialeila@gmail.com', 'Tia Leila');
+            $email->criar('Assunto do Email', 'Conteudo do email <b>negrito</b> ', 'tony.almeida@anferalta.com', 'Tóny Almeida', 'anferalta@gmail.com', 'T A');
             
             $email->anexar('./uploads/teste.txt');
             $email->anexar('./uploads/arquivo.pdf', 'PDF');
