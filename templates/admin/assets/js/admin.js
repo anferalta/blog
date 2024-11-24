@@ -14,9 +14,9 @@ $(document).ready(function() {
         }
     } );
     
-    $('#tabelaPosts').DataTable({
+    $('#tabela').DataTable({
         ajax: {
-            url: url + 'admin/post_fake/datatable',
+            url: url + 'admin/posts/datatable',
             type: 'POST',
             error: function(xhr, resp, text){
                 alert('Sua busca não retornou nenhum resultado!');

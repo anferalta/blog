@@ -11,25 +11,9 @@
         //Arquivo index responsavel pela inicialização do sistema
 
         require 'vendor/autoload.php';
-        //require 'rotas.php'; 
+        require 'rotas.php'; 
 
-        use sistema\Suporte\Email;
-        
-        try{
-            
-            $email = new Email();
-            $email->criar('Assunto do Email', 'Conteudo do email <b>negrito</b> ', 'tony.almeida@anferalta.com', 'Tóny Almeida', 'anferalta@gmail.com', 'T A');
-            
-            $email->anexar('./uploads/teste.txt');
-            $email->anexar('./uploads/arquivo.pdf', 'PDF');
-            
-            $email->enviar('tony.almeida@anferalta.com', 'Anferalta');
-            echo 'Email enviado com sucesso!';
-            
-        } catch (Exception $ex) {
-            echo $ex->getMessage();
-        }
-               
+                       
         ?>
 
 </html>
