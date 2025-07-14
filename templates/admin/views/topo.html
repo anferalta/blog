@@ -37,7 +37,12 @@
                                 <span>Usuarios</span>
                                 </a>
                             {%endif%}
-                        </li>        
+                        </li> 
+                        <li>
+                            <a href="{{url('contato')}}" tooltip="tooltip" title="Fale conosco">
+                                <span>Fale Conosco</span>
+                                </a>
+                        </li>   
                 
                         {% elseif usuario().level == 1 %}
                             <li>
