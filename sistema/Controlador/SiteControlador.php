@@ -88,4 +88,10 @@ class SiteControlador extends Controlador
             'titulo' => 'Página não encontrada'
         ]);
     }
+    
+    public function contato(): void
+    {
+      $dados = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+      
+    }
 }

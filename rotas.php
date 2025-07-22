@@ -13,7 +13,7 @@ try {
     SimpleRouter::get(URL_SITE . 'categoria/{id}', 'SiteControlador@categoria');
     SimpleRouter::post(URL_SITE . 'buscar', 'SiteControlador@buscar');
     SimpleRouter::get(URL_SITE . '404', 'SiteControlador@erro404');
-   // SimpleRouter::macth(['get', 'post'], URL_SITE. 'contato', 'SiteControlador@contato');
+    //SimpleRouter::macth(['get','post'], URL_SITE.'contato', 'SiteControlador@contato');
     
     //ROTAS ADMIN
     SimpleRouter::group(['namespace' => 'Admin'], function() {
