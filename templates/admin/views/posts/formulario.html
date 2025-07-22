@@ -4,67 +4,73 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{url('admin/dashboard')}}">
-                Inserção de
-            </a>
+            <a href="{{ url('admin/dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-            Posts
+            {{ post.id ? 'Editar Post' : 'Cadastrar Post' }}
         </li>
     </ol>
 </nav>
 
-<div class="card-border-0 shadow-sm">
+<div class="card border-0 shadow-sm">
     <div class="card-body">
-        
-        <form action="{% if post.id %} {{url('admin/posts/editar/'~post.id)}}{%else%}{{url('admin/posts/cadastrar/')}}{% endif %}" method="post" enctype="multipart/form-data">
+
+        <form action="{% if post.id %}{{ url('admin/posts/editar/' ~ post.id) }}{% else %}{{ url('admin/posts/cadastrar/') }}{% endif %}" method="post" enctype="multipart/form-data">
             
-            <input type="file" name="capa" accept=".png, .jpg, .jpeg">
-            
-            <a href="{{url('uploads/imagens/'~post.capa)}}" data-fancybox="gallery" data-caption="{{post.titulo}}">
-               <img src="{{url('uploads/imagens/thumbs/'~post.capa)}}" alt="{{post.titulo}}" title="{{post.titulo}}" class="capaGrande"/>
-            </a>
+            {# Campo de upload da imagem de capa #}
+            <div class="mb-3">
+                <label for="capa" class="form-label">Imagem de Capa</label>
+                <input type="file" name="capa" id="capa" class="form-control" accept=".png, .jpg, .jpeg, .pdf, ,docx, .gif, .txt">
+            </div>
+
+            {% if post.capa %}
+            <div class="mb-3">
+                <a href="{{ url('uploads/imagens/' ~ post.capa) }}" data-fancybox="gallery" data-caption="{{ post.titulo }}">
+                    <img src="{{ url('uploads/imagens/thumbs/' ~ post.capa) }}" alt="{{ post.titulo }}" title="{{ post.titulo }}" class="capaGrande"/>
+                </a>
+            </div>
+            {% endif %}
 
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
-                <input type="text" name="titulo" id="titulo" value="{{post.titulo}}" class="form-control">
+                <input type="text" name="titulo" id="titulo" value="{{ post.titulo }}" class="form-control">
             </div>
             
             <div class="mb-3">
                 <label for="texto" class="form-label">Texto</label>
-                <textarea name="texto" id="summernote" class="form-control"  rows="3">{{post.texto}}</textarea>
+                <textarea name="texto" id="summernote" class="form-control" rows="5">{{ post.texto }}</textarea>
             </div>
             
             <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <option selected value="{{categoria.id}}">Abre este menu de seleção</option>
-                        <select class="form-select" value="{{categoria.id}}"  name="categoria_id" id="categoria_id">
-                           {% for categoria in categorias %}
-                               <option value="{{categoria.id}}" {% if post.categoria_id == categoria_id %}selected{%endif%}>{{categoria.id}}</option>
-                               <option value="1">One</option>
-                               <option value="2">Two</option>
-                               <option value="3">Three</option>
-                           {% endfor %}
-                        </select>
-                    </div>
+                <div class="col-md-6 mb-3">
+                    <label for="categoria_id" class="form-label">Categoria</label>
+                    <select class="form-select" name="categoria_id" id="categoria_id">
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}" {% if post.categoria_id == categoria.id %}selected{% endif %}>
+                                {{ categoria.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
                 </div>
-            </div>
-                                    
-            <div class="col-md-6">
-                <div class="mb-3">
+
+                <div class="col-md-6 mb-3">
                     <label for="status" class="form-label">Status</label>
-                    <select class="form-select" name="status">
-                        <option value="1" {% if post.status == '1' %}selected{%endif%} >Activo</option>
-                        <option value="0" {% if post.status == '0' %}selected{%endif%} >Inactivo</option>
+                    <select class="form-select" name="status" id="status">
+                        <option value="1" {% if post.status == '1' %}selected{% endif %}>Ativo</option>
+                        <option value="0" {% if post.status == '0' %}selected{% endif %}>Inativo</option>
                     </select>
                 </div>
             </div>
-       
-            <input type="submit" class="btn btn-primary" value="{% if post.id %}Atualizar{% else %}Cadastrar{% endif %}" name="name">             
-            
-        </form>    
+
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="{{ post.id ? 'Atualizar' : 'Cadastrar' }}">
+            </div>
+
+        </form>
+
     </div>
 </div>
-<h1>Levou {{tempoCarregamento()}} para carregar</h1>
+
+<h6 class="text-muted mt-3">Levou {{ tempoCarregamento() }} para carregar</h6>
 {% endblock %}
